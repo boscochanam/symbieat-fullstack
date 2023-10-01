@@ -7,7 +7,7 @@ function FoodItemCard(props) {
       <div className="card-body">
         <h5 className="card-title">{props.title}</h5>
         <p className="card-text">{props.description}</p>
-        <p className="card-text">${props.price}</p>
+        <p className="card-text">&#8377; {props.price}</p>
         <button className="btn btn-primary">Add to Cart</button>
       </div>
     </div>
@@ -19,13 +19,13 @@ function FoodItems() {
       {
         title: 'Burger',
         description: 'Delicious burger with all the toppings',
-        price: 10.99,
+        price: 300,
         imageSrc: 'src/static/images/burger.webp', // Updated path with a leading slash
       },
       {
         title: 'Pizza',
         description: 'Freshly baked pizza with your favorite toppings',
-        price: 12.99,
+        price: 400,
         imageSrc: 'src/static/images/pizza.jpg', // Updated path with a leading slash
       },
       // Add more food items here
