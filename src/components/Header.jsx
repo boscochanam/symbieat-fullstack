@@ -11,6 +11,7 @@ function Header(props) {
 
   const resetCart = () => {
     props.setCartCount(0); // Assuming you have a state setter for cartCount
+    props.setCartTotal(0);
   };
 
   return (
@@ -37,11 +38,9 @@ function Header(props) {
           </ul>
         </div>
         <div style={cartCountStyle}>
-        <ShoppingCartIcon fontSize="small" />
-        &nbsp; {props.cartCount} &nbsp; &nbsp;
-        <button class = "btn btn-outline-light my-2 my-sm-0" onClick={resetCart}> Clear Cart </button>
-        
-          
+          <ShoppingCartIcon fontSize="small" />
+          &nbsp; {props.cartCount} : &nbsp; &#8377; {props.cartTotal} &nbsp; &nbsp;
+          <button className="btn btn-outline-light my-2 my-sm-0" onClick={resetCart}> Clear Cart </button>
         </div>
         <form className="form-inline ml-auto" role="search"> {/* 'ml-auto' pushes the form to the right */}
           <div className="input-group"> {/* Use Bootstrap's input group for side-by-side elements */}

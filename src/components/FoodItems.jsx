@@ -2,6 +2,12 @@ import React from 'react';
 
 function FoodItemCard(props) {
 
+  const handleAddToCart = () => {
+    // Call both addToCart and addToTotal when the button is clicked
+    props.addToCart();
+    props.addToTotal(props.price); // Pass the item's price to addToTotal
+  };
+
   return (
     <div className="card">
       <img src={props.imageSrc} className="card-img-top" alt={props.title} />
@@ -9,7 +15,7 @@ function FoodItemCard(props) {
         <h5 className="card-title">{props.title}</h5>
         <p className="card-text">{props.description}</p>
         <p className="card-text">&#8377; {props.price}</p>
-        <button className="btn btn-dark" onClick={props.addToCart}>Add to Cart</button>
+        <button className="btn btn-dark" onClick={handleAddToCart}>Add to Cart</button>
       </div>
     </div>
   );
@@ -45,7 +51,7 @@ function FoodItems(props) {
             {foodItems.map((item, index) => (
               <div className="col-md-4 mb-4" key={index}>
                 {/* Pass the addToCart function to FoodItemCard */}
-                <FoodItemCard {...item} addToCart={props.addToCart} />
+                <FoodItemCard {...item} addToCart={props.addToCart} addToTotal={props.addToTotal} />
               </div>
             ))}
           </div>
