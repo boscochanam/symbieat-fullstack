@@ -1,0 +1,6 @@
+.navbar-container {
+    position: sticky;
+    top: 0;
+    background-color: #EAEAEA;
+    z-index: 100; /* Adjust this value as needed */
+  }  

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import FoodItems from './components/FoodItems';
 import LocationSection from './components/LocationSection';
+import './static/style.css';
 
 function App() {
   // Cart State for Adding Items to Cart
@@ -22,7 +23,9 @@ function App() {
 
   return (
     <div>
-      <Header cartCount={cartCount} setCartCount={setCartCount} cartTotal={cartTotal} setCartTotal={setCartTotal}/>
+      <div className = "navbar-container">
+        <Header cartCount={cartCount} setCartCount={setCartCount} cartTotal={cartTotal} setCartTotal={setCartTotal}/>
+      </div>
       <LocationSection />
       {/* Pass the addToCart function to FoodItems */}
       <FoodItems addToCart={addToCart} addToTotal={addToTotal}/>
