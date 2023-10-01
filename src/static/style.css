@@ -3,4 +3,24 @@
     top: 0;
     background-color: #EAEAEA;
     z-index: 100; /* Adjust this value as needed */
-  }  
+  }
+
+  .popup {
+    display: none;
+    position: fixed;
+    top: 20px; /* Adjust the top position as desired */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: #F64976;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999;
+    padding-bottom: 0px;
+  }
+  
+  
+  .popup.active {
+    display: block;
+  }
+  

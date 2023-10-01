@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Popup from './Popup';
 
 function FoodItemCard(props) {
+
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleAddToCart = () => {
     // Call both addToCart and addToTotal when the button is clicked
     props.addToCart();
     props.addToTotal(props.price); // Pass the item's price to addToTotal
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 700);
   };
 
   return (
@@ -16,9 +21,11 @@ function FoodItemCard(props) {
         <p className="card-text">{props.description}</p>
         <p className="card-text">&#8377; {props.price}</p>
         <button className="btn btn-dark" onClick={handleAddToCart}>Add to Cart</button>
+        <Popup show={showPopup} message={`${props.title} added to cart!`} /> {/* Add the Popup component */}
       </div>
     </div>
   );
+  
 }
 
 
@@ -52,6 +59,7 @@ function FoodItems(props) {
               <div className="col-md-4 mb-4" key={index}>
                 {/* Pass the addToCart function to FoodItemCard */}
                 <FoodItemCard {...item} addToCart={props.addToCart} addToTotal={props.addToTotal} />
+                
               </div>
             ))}
           </div>
