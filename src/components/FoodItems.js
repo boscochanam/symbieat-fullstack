@@ -1,6 +1,7 @@
 import React from 'react';
 
 function FoodItemCard(props) {
+
   return (
     <div className="card">
       <img src={props.imageSrc} className="card-img-top" alt={props.title} />
@@ -8,13 +9,14 @@ function FoodItemCard(props) {
         <h5 className="card-title">{props.title}</h5>
         <p className="card-text">{props.description}</p>
         <p className="card-text">&#8377; {props.price}</p>
-        <button className="btn btn-dark">Add to Cart</button>
+        <button className="btn btn-dark" onClick={props.addToCart}>Add to Cart</button>
       </div>
     </div>
   );
 }
 
-function FoodItems() {
+
+function FoodItems(props) {
     const foodItems = [
       {
         title: 'Burger',
@@ -38,16 +40,17 @@ function FoodItems() {
     ];
   
     return (
-      <div className="container mt-4">
-        <div className="row">
-          {foodItems.map((item, index) => (
-            <div className="col-md-4 mb-4" key={index}>
-              <FoodItemCard {...item} />
-            </div>
-          ))}
+        <div className="container mt-4">
+          <div className="row">
+            {foodItems.map((item, index) => (
+              <div className="col-md-4 mb-4" key={index}>
+                {/* Pass the addToCart function to FoodItemCard */}
+                <FoodItemCard {...item} addToCart={props.addToCart} />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    );
+      );
   }
   
 

@@ -1,6 +1,14 @@
 import React from 'react';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-function Header() {
+function Header(props) {
+  const cartCountStyle = {
+    weight: 'strong',
+    padding: '5px',
+    color: 'white',        
+    margin: '10px',
+  };
+
   return (
     <nav className="navbar bg-dark navbar-expand-lg" style={{ backgroundColor: '#EAEAEA' }} data-bs-theme="dark">
       <div className="container-fluid">
@@ -23,6 +31,11 @@ function Header() {
               <a className="nav-link" href="#">Contact</a>
             </li>
           </ul>
+        </div>
+        <div style={cartCountStyle}>
+        <ShoppingCartIcon fontSize="small" />
+        &nbsp; {props.cartCount}
+          
         </div>
         <form className="form-inline ml-auto" role="search"> {/* 'ml-auto' pushes the form to the right */}
           <div className="input-group"> {/* Use Bootstrap's input group for side-by-side elements */}
