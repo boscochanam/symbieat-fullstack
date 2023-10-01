@@ -20,13 +20,13 @@ function FoodItems() {
         title: 'Burger',
         description: 'Delicious burger with all the toppings',
         price: 300,
-        imageSrc: 'src/static/images/burger.webp', // Updated path with a leading slash
+        imageSrc: 'https://static.toiimg.com/thumb/83565509.cms?width=1200&height=900', // Updated path with a leading slash
       },
       {
         title: 'Pizza',
         description: 'Freshly baked pizza with your favorite toppings',
         price: 400,
-        imageSrc: 'src/static/images/pizza.jpg', // Updated path with a leading slash
+        imageSrc: 'https://www.allrecipes.com/thmb/iXKYAl17eIEnvhLtb4WxM7wKqTc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/240376-homemade-pepperoni-pizza-Beauty-3x4-1-6ae54059c23348b3b9a703b6a3067a44.jpg', // Updated path with a leading slash
       },
       // Add more food items here
     ];
