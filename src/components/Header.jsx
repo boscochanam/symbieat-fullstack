@@ -9,6 +9,10 @@ function Header(props) {
     margin: '10px',
   };
 
+  const resetCart = () => {
+    props.setCartCount(0); // Assuming you have a state setter for cartCount
+  };
+
   return (
     <nav className="navbar bg-dark navbar-expand-lg" style={{ backgroundColor: '#EAEAEA' }} data-bs-theme="dark">
       <div className="container-fluid">
@@ -34,7 +38,9 @@ function Header(props) {
         </div>
         <div style={cartCountStyle}>
         <ShoppingCartIcon fontSize="small" />
-        &nbsp; {props.cartCount}
+        &nbsp; {props.cartCount} &nbsp; &nbsp;
+        <button class = "btn btn-outline-light my-2 my-sm-0" onClick={resetCart}> Clear Cart </button>
+        
           
         </div>
         <form className="form-inline ml-auto" role="search"> {/* 'ml-auto' pushes the form to the right */}

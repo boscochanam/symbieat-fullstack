@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div>
-      <Header cartCount={cartCount} />
+      <Header cartCount={cartCount} setCartCount={setCartCount}/>
       <LocationSection />
       {/* Pass the addToCart function to FoodItems */}
       <FoodItems addToCart={addToCart} />
