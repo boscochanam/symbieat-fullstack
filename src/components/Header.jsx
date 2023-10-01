@@ -45,7 +45,7 @@ function Header(props) {
         </div>
         <form className="form-inline ml-auto" role="search"> {/* 'ml-auto' pushes the form to the right */}
           <div className="input-group"> {/* Use Bootstrap's input group for side-by-side elements */}
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" /> &nbsp;
             <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
           </div>
         </form>
