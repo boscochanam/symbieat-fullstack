@@ -31,7 +31,7 @@ function FoodItemCard(props) {
           <p className="card-text">{props.description}</p>
           <p className="card-text">&#8377; {props.price}</p>
           <button className="btn btn-dark" onClick={handleAddToCart}>Add to Cart</button>
-          <Popup show={showPopup} message={`${props.title} added to cart!`} /> {/* Add the Popup component */}
+          <Popup show={showPopup} message={`${props.title} added to cart!`} />
         </div>
       </div>
     </div>
@@ -107,6 +107,9 @@ function FoodItems(props) {
           setCartTotal={props.setCartTotal}
         />
       </div>
+      <div className="menu-section" style={menuStyle}>
+        <h1 className="text-center text-white">Menu</h1>
+      </div>
       <div className="container mt-4">
         <div className="row">
           {foodItems.map((item, index) => (
@@ -120,5 +123,13 @@ function FoodItems(props) {
     </div>
   );
 }
+
+const menuStyle = {
+  backgroundColor: '#52CB8C', // Green background color
+  minHeight: '50vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
 
 export default FoodItems;

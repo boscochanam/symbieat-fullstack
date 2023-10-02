@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './static/style.css';
 import Home from './Pages/Home';
 import Menu from './Pages/Menu';
+import Locations from './Pages/Locations';
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -36,6 +37,19 @@ function App() {
           path="/menu"
           element={
             <Menu
+              cartCount={cartCount}
+              setCartCount={setCartCount}
+              cartTotal={cartTotal}
+              setCartTotal={setCartTotal}
+              addToCart={addToCart}
+              addToTotal={addToTotal}
+            />
+          }
+        />
+        <Route
+          path="/locations"
+          element={
+            <Locations
               cartCount={cartCount}
               setCartCount={setCartCount}
               cartTotal={cartTotal}
