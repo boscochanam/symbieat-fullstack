@@ -51,6 +51,19 @@ function FoodItems(props) {
   // Create a state variable to track ratings for each food item
   const [foodItemRatings, setFoodItemRatings] = useState({});
 
+  // Generate random average ratings for each food item
+  const generateRandomAverageRatings = () => {
+    const randomRatings = {};
+
+    foodItems.forEach((item) => {
+      randomRatings[item.title] = Math.floor(Math.random() * 5) + 1; // Random rating between 1 and 5
+    });
+
+    return randomRatings;
+  };
+
+  const randomAverageRatings = generateRandomAverageRatings();
+
   // Callback function to update the rating for a food item
   const handleRatingChange = (foodItemTitle, rating) => {
     setFoodItemRatings((prevRatings) => ({
@@ -64,15 +77,16 @@ function FoodItems(props) {
       <div className="row">
         {foodItems.map((item, index) => (
           <div className="col-md-4 mb-4" key={index}>
-            {/* Pass the addToCart function, addToTotal function, and foodItemRating to FoodItemCard */}
+            {/* Pass the addToCart function, addToTotal function, foodItemRating, and randomAverageRating to FoodItemCard */}
             <FoodItemCard
               {...item}
               addToCart={props.addToCart}
               addToTotal={props.addToTotal}
-              initialRating={foodItemRatings[item.title] || 0} // Use initialRating prop
+              initialRating={foodItemRatings[item.title] || 0}
               onRatingChange={(rating) =>
                 handleRatingChange(item.title, rating)
               }
+              randomAverageRating={randomAverageRatings[item.title]}
             />
           </div>
         ))}
