@@ -8,7 +8,7 @@ import sushi from '../static/food_images/sushi.webp';
 import ramen from '../static/food_images/ramen.webp';
 
 
-function FoodItemCard(props) {
+function FoodItemCard(props) {  
 
   const [showPopup, setShowPopup] = useState(false);
 
