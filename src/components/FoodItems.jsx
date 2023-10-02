@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Popup from './Popup';
-<<<<<<< HEAD
 import FoodItemCard from './FoodItemCard'; // Import the FoodItemCard component
 import pizza from '../static/food_images/pizza.jpg';
 import burger from '../static/food_images/burger.webp';
@@ -8,14 +7,6 @@ import fries from '../static/food_images/fries.jpg';
 import salad from '../static/food_images/salad.jpg';
 import sushi from '../static/food_images/sushi.webp';
 import ramen from '../static/food_images/ramen.webp';
-=======
-import pizza from '../static/images/pizza.jpg';
-import burger from '../static/images/burger.webp';
-import fries from '../static/images/fries.jpg';
-import salad from '../static/images/salad.jpg';
-import sushi from '../static/images/sushi.webp';
-import ramen from '../static/images/ramen.webp';
->>>>>>> parent of 6dbfd48 (Carousel Update: Added Images and Auto slide)
 
 function FoodItems(props) {
   const foodItems = [
