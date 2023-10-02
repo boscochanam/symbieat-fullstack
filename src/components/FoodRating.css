@@ -1,0 +1,64 @@
+/* FoodRating.css */
+
+/* Star styles */
+.star {
+    font-size: 30px; /* Adjust the size as needed */
+    color: gray; /* Default color */
+    cursor: pointer;
+    transition: color 0.2s;
+    margin-right: 5px; /* Add spacing between stars */
+  }
+  
+  .star.selected {
+    color: yellow; /* Selected color */
+  }
+  
+  .star.hovered,
+  .star:hover {
+    color: yellow; /* Hovered color */
+  }
+  
+  /* Rating box styles */
+  .small-rating-box {
+    display: inline-block;
+    padding: 8px; /* Reduced padding */
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    margin-right: 10px; /* Add spacing between rating boxes */
+    margin-bottom: 10px; /* Add spacing below rating boxes */
+  }
+  
+  /* Style for "Your Rating" box */
+  .your-rating-box {
+    font-weight: bold;
+    color: white;
+    padding: 8px; /* Reduced padding */
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-right: 10px; /* Add spacing between rating boxes */
+    margin-bottom: 10px; /* Add spacing below rating boxes */
+  }
+  
+  .dark-green {
+    background-color: darkgreen;
+  }
+  
+  .light-green {
+    background-color: lightgreen;
+  }
+  
+  .orange {
+    background-color: orange;
+  }
+  
+  .red {
+    background-color: red;
+  }
+  
+  /* Text style for the rating values */
+  .rating-text {
+    font-size: 18px; /* Adjust the font size as needed */
+  }
+  

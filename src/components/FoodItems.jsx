@@ -1,40 +1,12 @@
 import React, { useState } from 'react';
 import Popup from './Popup';
+import FoodItemCard from './FoodItemCard'; // Import the FoodItemCard component
 import pizza from '../static/food_images/pizza.jpg';
 import burger from '../static/food_images/burger.webp';
 import fries from '../static/food_images/fries.jpg';
 import salad from '../static/food_images/salad.jpg';
 import sushi from '../static/food_images/sushi.webp';
 import ramen from '../static/food_images/ramen.webp';
-
-
-function FoodItemCard(props) {
-
-  const [showPopup, setShowPopup] = useState(false);
-
-  const handleAddToCart = () => {
-    // Call both addToCart and addToTotal when the button is clicked
-    props.addToCart();
-    props.addToTotal(props.price); // Pass the item's price to addToTotal
-    setShowPopup(true);
-    setTimeout(() => setShowPopup(false), 700);
-  };
-
-  return (
-    <div className="card" >
-      <img src={props.imageSrc} style={{ height: '300px' }} className="card-img-top"  alt={props.title} />
-      <div className="card-body">
-        <h5 className="card-title">{props.title}</h5>
-        <p className="card-text">{props.description}</p>
-        <p className="card-text">&#8377; {props.price}</p>
-        <button className="btn btn-dark" onClick={handleAddToCart}>Add to Cart</button>
-        <Popup show={showPopup} message={`${props.title} added to cart!`} /> {/* Add the Popup component */}
-      </div>
-    </div>
-  );
-  
-}
-
 
 function FoodItems(props) {
   const foodItems = [
@@ -49,7 +21,7 @@ function FoodItems(props) {
       description: 'Freshly baked pizza with your favorite toppings',
       price: 400,
       imageSrc: pizza,
-    },  
+    },
     {
       title: 'Fries',
       description: 'Freshly baked pizza with your favorite toppings',
@@ -75,21 +47,38 @@ function FoodItems(props) {
       imageSrc: ramen,
     },
   ];
-  
-    return (
-        <div className="container mt-4">
-          <div className="row">
-            {foodItems.map((item, index) => (
-              <div className="col-md-4 mb-4" key={index}>
-                {/* Pass the addToCart function to FoodItemCard */}
-                <FoodItemCard {...item} addToCart={props.addToCart} addToTotal={props.addToTotal} />
-                
-              </div>
-            ))}
+
+  // Create a state variable to track ratings for each food item
+  const [foodItemRatings, setFoodItemRatings] = useState({});
+
+  // Callback function to update the rating for a food item
+  const handleRatingChange = (foodItemTitle, rating) => {
+    setFoodItemRatings((prevRatings) => ({
+      ...prevRatings,
+      [foodItemTitle]: rating,
+    }));
+  };
+
+  return (
+    <div className="container mt-4">
+      <div className="row">
+        {foodItems.map((item, index) => (
+          <div className="col-md-4 mb-4" key={index}>
+            {/* Pass the addToCart function, addToTotal function, and foodItemRating to FoodItemCard */}
+            <FoodItemCard
+              {...item}
+              addToCart={props.addToCart}
+              addToTotal={props.addToTotal}
+              initialRating={foodItemRatings[item.title] || 0} // Use initialRating prop
+              onRatingChange={(rating) =>
+                handleRatingChange(item.title, rating)
+              }
+            />
           </div>
-        </div>
-      );
-  }
-  
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default FoodItems;
