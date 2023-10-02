@@ -10,12 +10,12 @@
   }
   
   .star.selected {
-    color: rgb(228, 228, 34); /* Selected color */
+    color: yellow; /* Selected color */
   }
   
   .star.hovered,
   .star:hover {
-    color: rgb(228, 228, 34); /* Hovered color */
+    color: yellow; /* Hovered color */
   }
   
   /* Rating box styles */
