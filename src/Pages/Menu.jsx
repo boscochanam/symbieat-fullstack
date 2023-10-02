@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Popup from './Popup';
+import Popup from '../components/Popup';
+import Header from '../components/Header';
 import pizza from '../static/food_images/pizza.jpg';
 import burger from '../static/food_images/burger.webp';
 import fries from '../static/food_images/fries.jpg';
@@ -11,7 +12,6 @@ import berry from '../static/food_images/berry_burlesque.jpg'
 import ginger from '../static/food_images/shirley_ginger.jpg'
 
 function FoodItemCard(props) {
-
   const [showPopup, setShowPopup] = useState(false);
 
   const handleAddToCart = () => {
@@ -23,20 +23,20 @@ function FoodItemCard(props) {
   };
 
   return (
-    <div className="card" >
-      <img src={props.imageSrc} style={{ height: '300px' }} className="card-img-top"  alt={props.title} />
-      <div className="card-body">
-        <h5 className="card-title">{props.title}</h5>
-        <p className="card-text">{props.description}</p>
-        <p className="card-text">&#8377; {props.price}</p>
-        <button className="btn btn-dark" onClick={handleAddToCart}>Add to Cart</button>
-        <Popup show={showPopup} message={`${props.title} added to cart!`} /> {/* Add the Popup component */}
+    <div>
+      <div className="card">
+        <img src={props.imageSrc} style={{ height: '300px' }} className="card-img-top" alt={props.title} />
+        <div className="card-body">
+          <h5 className="card-title">{props.title}</h5>
+          <p className="card-text">{props.description}</p>
+          <p className="card-text">&#8377; {props.price}</p>
+          <button className="btn btn-dark" onClick={handleAddToCart}>Add to Cart</button>
+          <Popup show={showPopup} message={`${props.title} added to cart!`} /> {/* Add the Popup component */}
+        </div>
       </div>
     </div>
   );
-  
 }
-
 
 function FoodItems(props) {
   const foodItems = [
@@ -51,7 +51,7 @@ function FoodItems(props) {
       description: 'Freshly baked pizza with your favorite toppings',
       price: 400,
       imageSrc: pizza,
-    },  
+    },
     {
       title: 'Fries',
       description: 'Freshly baked pizza with your favorite toppings',
@@ -77,39 +77,48 @@ function FoodItems(props) {
       imageSrc: ramen,
     },
     {
-        title: 'Virgin Cucumber Gimlet',
-        description: 'Soda, silces of cucumber, lime juice, simple syrup',
-        price: 150,
-        imageSrc: cucumber,
+      title: 'Virgin Cucumber Gimlet',
+      description: 'Soda, slices of cucumber, lime juice, simple syrup',
+      price: 150,
+      imageSrc: cucumber,
     },
     {
-        title: 'Shirley Ginger',
-        description: 'Lemon Lime Ginger Syrup, club soda, lime juice',
-        price: 800,
-        imageSrc: ginger,
+      title: 'Shirley Ginger',
+      description: 'Lemon Lime Ginger Syrup, club soda, lime juice',
+      price: 800,
+      imageSrc: ginger,
     },
     {
-        title: 'Berry Burlesque',
-        description: 'lime juice, honey syrup, black currant, mint leaves',
-        price: 800,
-        imageSrc: berry,
+      title: 'Berry Burlesque',
+      description: 'Lime juice, honey syrup, black currant, mint leaves',
+      price: 800,
+      imageSrc: berry,
     },
   ];
-  
-    return (
-        <div className="container mt-4">
-          <div className="row">
-            {foodItems.map((item, index) => (
-              <div className="col-md-4 mb-4" key={index}>
-                {/* Pass the addToCart function to FoodItemCard */}
-                <FoodItemCard {...item} addToCart={props.addToCart} addToTotal={props.addToTotal} />
-                
-              </div>
-            ))}
-          </div>
+
+  return (
+    <div>
+      <div className="navbar-container">
+        {/* Render the Header component */}
+        <Header
+          cartCount={props.cartCount}
+          setCartCount={props.setCartCount}
+          cartTotal={props.cartTotal}
+          setCartTotal={props.setCartTotal}
+        />
+      </div>
+      <div className="container mt-4">
+        <div className="row">
+          {foodItems.map((item, index) => (
+            <div className="col-md-4 mb-4" key={index}>
+              {/* Pass the addToCart function to FoodItemCard */}
+              <FoodItemCard {...item} addToCart={props.addToCart} addToTotal={props.addToTotal} />
+            </div>
+          ))}
         </div>
-      );
-  }
-  
+      </div>
+    </div>
+  );
+}
 
 export default FoodItems;

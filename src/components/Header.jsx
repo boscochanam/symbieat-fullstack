@@ -1,5 +1,6 @@
 import React from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { NavLink } from 'react-router-dom';
 
 function Header(props) {
   const cartCountStyle = {
@@ -22,21 +23,21 @@ function Header(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="https://www.google.com/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="https://www.google.com/">Food</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="https://www.google.com/">Drinks</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="https://www.google.com/">Contact</a>
-            </li>
-          </ul>
-        </div>
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/menu">Menu</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/drinks">Locations</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/contact">Contact</NavLink>
+          </li>
+        </ul>
+      </div>
         <div style={cartCountStyle}>
           <ShoppingCartIcon fontSize="small" />
           &nbsp; {props.cartCount} : &nbsp; &#8377; {props.cartTotal} &nbsp; &nbsp;
