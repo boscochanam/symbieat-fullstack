@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import FoodItems from './components/FoodItems';
 import LocationSection from './components/LocationSection';
+import Carousel from './components/Carousel';
 import './static/style.css';
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
         <Header cartCount={cartCount} setCartCount={setCartCount} cartTotal={cartTotal} setCartTotal={setCartTotal}/>
       </div>
       <LocationSection />
+      <div className="container text-center">
+        <Carousel />
+      </div>
       {/* Pass the addToCart function to FoodItems */}
       <FoodItems addToCart={addToCart} addToTotal={addToTotal}/>
     </div>
