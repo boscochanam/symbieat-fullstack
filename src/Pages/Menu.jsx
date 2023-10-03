@@ -22,7 +22,7 @@ function FoodItemCard(props) {
 
   const handleAddToCart = () => {
     // Call both addToCart and addToTotal when the button is clicked
-    props.addToCart();
+    props.addToCart(props);
     props.addToTotal(props.price); // Pass the item's price to addToTotal
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 700);
