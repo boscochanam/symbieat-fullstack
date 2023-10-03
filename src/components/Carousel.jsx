@@ -4,6 +4,8 @@ import lhbc from '../static/symbieat_images/lhbc.jpg';
 import sicsr from '../static/symbieat_images/sicsr.jpg';
 import smcw from '../static/symbieat_images/smcw.jpg';
 import viman_nagar from '../static/symbieat_images/viman_nagar.jpg';
+import scms from '../static/symbieat_images/scms.jpg';
+
 
 function Carousel() {
   // Define carousel items with location names and images
@@ -27,6 +29,10 @@ function Carousel() {
     {
       title: 'Viman Nagar',
       imageSrc: viman_nagar, 
+    },
+    {
+      title: 'SCMS',
+      imageSrc: scms, 
     },
   ];
 
@@ -66,7 +72,7 @@ function Carousel() {
                 src={location.imageSrc}
                 alt={location.title}
                 className="d-block w-100"
-                style={{ objectFit: 'cover', maxHeight: '400px' }}
+                style={{ objectFit: 'cover', maxHeight: '500px' }}
               />
               <div className="carousel-caption d-none d-md-block">
                 <h1>{location.title}</h1>

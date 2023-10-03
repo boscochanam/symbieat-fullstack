@@ -5,36 +5,47 @@ import lhbc from '../static/symbieat_images/lhbc.jpg';
 import sicsr from '../static/symbieat_images/sicsr.jpg';
 import smcw from '../static/symbieat_images/smcw.jpg';
 import viman_nagar from '../static/symbieat_images/viman_nagar.jpg';
+import scms from '../static/symbieat_images/scms.jpg';
 
 function Locations(props) {
-
   const locations = [
     {
       title: 'Lavale Hillbase Campus',
-      description: 'This is the Lavale Hillbase Campus description. Add your filler text here.',
-      imageSrc: lhbc, // Add the imported image source
+      description: 'This is the Lavale Hillbase Campus description.',
+      imageSrc: lhbc, 
     },
     {
       title: 'SMCW Cafeteria',
-      description: 'This is the SMCW Cafeteria description. Add your filler text here.',
-      imageSrc: smcw, // Add the imported image source
+      description: 'This is the SMCW Cafeteria description.',
+      imageSrc: smcw, 
     },
     {
       title: 'Hilltop Campus',
-      description: 'This is the Hilltop Campus description. Add your filler text here.',
-      imageSrc: hilltop, // Add the imported image source
+      description: 'This is the Hilltop Campus description.',
+      imageSrc: hilltop, 
     },
     {
       title: 'SYMBIEAT at SICSR & SiG.',
-      description: 'This is the SYMBIEAT at SICSR & SiG. description. Add your filler text here.',
-      imageSrc: sicsr, // Add the imported image source
+      description: 'This is the SYMBIEAT at SICSR & SiG. description.',
+      imageSrc: sicsr, 
     },
     {
       title: 'Viman Nagar',
-      description: 'This is the Viman Nagar description. Add your filler text here.',
-      imageSrc: viman_nagar, // Add the imported image source
+      description: 'This is the Viman Nagar description.',
+      imageSrc: viman_nagar, 
+    },
+    {
+      title: 'SCMS',
+      description: 'This is the Viman Nagar description.',
+      imageSrc: scms, 
     },
   ];
+
+  // Set a fixed height for the images
+  const imageStyle = {
+    height: '300px', 
+    objectFit: 'cover',
+  };
 
   return (
     <div>
@@ -53,19 +64,18 @@ function Locations(props) {
         <h1 className="text-center text-white">Locations</h1>
       </div>
 
-      <div className="locations-page ">
+      <div className="locations-page">
         <h1 className="text-center">Our Locations</h1>
-        <div className="row justify-content-center col-md-9">
+        <div className="row justify-content-center">
           {locations.map((location, index) => (
-            <div className="col-md-4 mb-4" key={index}>
+            <div className="col-md-4 mb-4 px-2" key={index}>
               {/* Add margin to the card */}
-              <div className="card my-3 ">
-                
+              <div className="card">
                 <img
                   src={location.imageSrc}
                   className="card-img-top"
                   alt={location.title}
-                  style={{ height: '300px', objectFit: 'cover' }}
+                  style={imageStyle}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{location.title}</h5>
