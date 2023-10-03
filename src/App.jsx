@@ -4,13 +4,16 @@ import './static/style.css';
 import Home from './Pages/Home';
 import Menu from './Pages/Menu';
 import Locations from './Pages/Locations';
+import Cart from './Pages/Cart'
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = () => {
-    setCartCount(cartCount + 1);
+  const addToCart = (item) => {
+    setCartItems(c=>[...c, item]); // Add the item to the cartItems array
+    setCartCount(c=>c + 1); // Update the cart count
   };
 
   const addToTotal = (amt) => {
@@ -59,6 +62,19 @@ function App() {
             />
           }
         />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              cartItems={cartItems} // Pass the cartItems array
+              cartCount={cartCount}
+              setCartCount={setCartCount}
+              cartTotal={cartTotal}
+              setCartTotal={setCartTotal}
+            />
+          }
+        />
+
       </Routes>
     </Router>
   );

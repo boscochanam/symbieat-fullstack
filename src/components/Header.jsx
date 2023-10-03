@@ -34,7 +34,7 @@ function Header(props) {
             <NavLink className="nav-link" to="/locations">Locations</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/contact">Contact</NavLink>
+            <NavLink className="nav-link" to="/cart">Cart</NavLink>
           </li>
         </ul>
       </div>
