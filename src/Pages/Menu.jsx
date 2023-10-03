@@ -10,6 +10,12 @@ import ramen from '../static/food_images/ramen.webp';
 import cucumber from '../static/food_images/cucumber_gimlet.jpg'
 import berry from '../static/food_images/berry_burlesque.jpg'
 import ginger from '../static/food_images/shirley_ginger.jpg'
+import bisleri from '../static/food_images/bisleri.jpg'
+import coca_cola from '../static/food_images/coca_cola.jpg'
+import maaza from '../static/food_images/maaza.jpg'
+import momos from '../static/food_images/momos.jpg'
+import paneer_roll from '../static/food_images/paneer_roll.jpg'
+import veg_thali from '../static/food_images/veg_thali.jpg'
 
 function FoodItemCard(props) {
   const [showPopup, setShowPopup] = useState(false);
@@ -94,6 +100,42 @@ function FoodItems(props) {
       price: 800,
       imageSrc: berry,
     },
+    {
+      title: 'Bisleri',
+      description: ' Pure and refreshing bottled water for instant hydration',
+      price: 20,
+      imageSrc: bisleri
+    },
+    {
+      title: 'Coca Cola',
+      description: 'Classic carbonated beverage with a fizzy, sweet taste',
+      price: 20,
+      imageSrc: coca_cola,
+    },
+    {
+      title: 'Maaza',
+      description: "Tropical mango juice that's a burst of fruity goodness",
+      price: 20,
+      imageSrc: maaza,
+    },
+    {
+      title: 'Paneer Roll',
+      description: 'Soft flatbread filled with succulent paneer and flavorful spices',
+      price: 100,
+      imageSrc: paneer_roll,
+    },
+    {
+      title: 'Momos',
+      description: 'Delicate dumplings filled with a delicious mixture of meat or vegetables',
+      price: 60,
+      imageSrc: momos,
+    },
+    {
+      title: 'Veg Thali',
+      description: 'A delightful platter featuring an assortment of vegetarian dishes for a complete meal experience',
+      price: 80,
+      imageSrc: veg_thali,
+    }
   ];
 
   return (
