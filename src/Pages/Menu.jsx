@@ -105,6 +105,7 @@ function FoodItems(props) {
           setCartCount={props.setCartCount}
           cartTotal={props.cartTotal}
           setCartTotal={props.setCartTotal}
+          clearCart={props.clearCart}
         />
       </div>
       <div className="menu-section" style={menuStyle}>

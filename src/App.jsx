@@ -20,6 +20,10 @@ function App() {
     setCartTotal(cartTotal + amt);
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <Router>
       <Routes>
@@ -33,6 +37,7 @@ function App() {
               setCartTotal={setCartTotal}
               addToCart={addToCart}
               addToTotal={addToTotal}
+              clearCart={clearCart}
             />
           }
         />
@@ -46,6 +51,7 @@ function App() {
               setCartTotal={setCartTotal}
               addToCart={addToCart}
               addToTotal={addToTotal}
+              clearCart={clearCart}
             />
           }
         />
@@ -59,6 +65,7 @@ function App() {
               setCartTotal={setCartTotal}
               addToCart={addToCart}
               addToTotal={addToTotal}
+              clearCart={clearCart}
             />
           }
         />
@@ -71,6 +78,7 @@ function App() {
               setCartCount={setCartCount}
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
+              clearCart={clearCart}
             />
           }
         />

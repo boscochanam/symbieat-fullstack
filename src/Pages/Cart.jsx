@@ -11,6 +11,7 @@ function Cart({ cartItems, ...props }) { // Merge all props into a single object
           setCartCount={props.setCartCount}
           cartTotal={props.cartTotal}
           setCartTotal={props.setCartTotal}
+          clearCart={props.clearCart}
         />
       </div>
       <h2 className="text-center mb-4">Your Shopping Cart</h2>

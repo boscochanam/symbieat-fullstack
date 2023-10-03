@@ -56,6 +56,7 @@ function Locations(props) {
           setCartCount={props.setCartCount}
           cartTotal={props.cartTotal}
           setCartTotal={props.setCartTotal}
+          clearCart={props.clearCart}
         />
       </div>
 
