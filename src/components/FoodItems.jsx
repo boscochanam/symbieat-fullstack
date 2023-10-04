@@ -59,7 +59,7 @@ function FoodItems(props) {
     },
     {
       title: 'Fries',
-      description: 'Freshly baked pizza with your favorite toppings',
+      description: 'Crispy fries, made using organic potatoes',
       price: 400,
       imageSrc: fries,
     },
@@ -71,13 +71,13 @@ function FoodItems(props) {
     },
     {
       title: 'Salad',
-      description: 'Healthy and colorful salad with a variety of veggies',
+      description: 'Healthy and colorful salad ',
       price: 250,
       imageSrc: salad,
     },
     {
       title: 'Ramen',
-      description: 'Juicy and tender steak cooked to perfection',
+      description: 'Straight from Japan',
       price: 800,
       imageSrc: ramen,
     },

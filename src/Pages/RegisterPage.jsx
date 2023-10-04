@@ -51,8 +51,7 @@ function RegisterPage() {
       return;
     }
 
-    // If all fields are valid, you can proceed with registration logic here
-    // For now, you can just log a success message
+    // If all fields are valid, proceed with registration logic here
     console.log('Registration successful');
   };
 
