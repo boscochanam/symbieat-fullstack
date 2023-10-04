@@ -48,13 +48,13 @@ function LocationSection() {
         <div className="row">
           <div className="col-md-6 offset-md-3 text-center">
             <h2 className="text-light">Find your nearest Symbieat</h2>
-            <p className="text-white">Enter your location to find out the closest Symbieat location.</p>
+            <p className="text-white">Select a location to find out the closest Symbieat location.</p>
             <div className="input-group mb-3">
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter your location"
-                aria-label="Enter your location"
+                placeholder="-- Select your location --"
+                aria-label="-- Select your location --"
                 onClick={toggleDropdown} // Open the dropdown on input click
                 value={selectedLocation} // Display the selected location in the input field
                 readOnly // Make the input field read-only
