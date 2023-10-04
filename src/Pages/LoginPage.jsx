@@ -17,9 +17,6 @@ function LoginPage() {
     borderRadius: '1rem 0 0 1rem',
   };
 
-  const iconStyle = {
-    color: '#ff6219',
-  };
 
   return (
     <section className="vh-100" style={containerStyle}>

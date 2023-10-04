@@ -37,11 +37,9 @@ function Header(props) {
           <li className="nav-item">
             <NavLink className="nav-link" to="/cart">Cart</NavLink>
           </li>
-          <li className='nav-item'>
-            <NavLink className="nav-link" to="/login">Login</NavLink>
-          </li>
         </ul>
       </div>
+        <button className='btn btn-success' onClick={() => { resetCart(); window.location.href = "/login"; }}>Log In</button>
         <div style={cartCountStyle}>
           <ShoppingCartIcon fontSize="small" />
           &nbsp; {props.cartCount} : &nbsp; &#8377; {props.cartTotal} &nbsp; &nbsp;
