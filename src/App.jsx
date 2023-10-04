@@ -14,8 +14,8 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = (item) => {
-    setCartItems(c=>[...c, item]); // Add the item to the cartItems array
-    setCartCount(c=>c + 1); // Update the cart count
+    setCartItems(c => [...c, item]); // Add the item to the cartItems array
+    setCartCount(c => c + 1); // Update the cart count
   };
 
   const addToTotal = (amt) => {

@@ -1,15 +1,17 @@
 /* FoodRating.css */
 .food-rating {
-    font-size: 36px; /* Increase the star size */
-    cursor: pointer;
-  }
-  
-  .star {
-    color: #ccc;
-    transition: color 0.2s; /* Smooth color transition on hover */
-  }
-  
-  .star.filled {
-    color: #f8ce0b; /* Yellow color for filled stars */
-  }
-  
+  font-size: 36px;
+  /* Increase the star size */
+  cursor: pointer;
+}
+
+.star {
+  color: #ccc;
+  transition: color 0.2s;
+  /* Smooth color transition on hover */
+}
+
+.star.filled {
+  color: #f8ce0b;
+  /* Yellow color for filled stars */
+}

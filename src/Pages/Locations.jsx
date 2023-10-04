@@ -13,38 +13,38 @@ function Locations(props) {
     {
       title: 'Lavale Hillbase Campus',
       description: 'This is the Lavale Hillbase Campus description.',
-      imageSrc: lhbc, 
+      imageSrc: lhbc,
     },
     {
       title: 'SMCW Cafeteria',
       description: 'This is the SMCW Cafeteria description.',
-      imageSrc: smcw, 
+      imageSrc: smcw,
     },
     {
       title: 'Hilltop Campus',
       description: 'This is the Hilltop Campus description.',
-      imageSrc: hilltop, 
+      imageSrc: hilltop,
     },
     {
       title: 'SYMBIEAT at SICSR & SiG.',
       description: 'This is the SYMBIEAT at SICSR & SiG. description.',
-      imageSrc: sicsr, 
+      imageSrc: sicsr,
     },
     {
       title: 'Viman Nagar',
       description: 'This is the Viman Nagar description.',
-      imageSrc: viman_nagar, 
+      imageSrc: viman_nagar,
     },
     {
       title: 'SCMS',
       description: 'This is the Viman Nagar description.',
-      imageSrc: scms, 
+      imageSrc: scms,
     },
   ];
 
   // Set a fixed height for the images
   const imageStyle = {
-    height: '300px', 
+    height: '300px',
     objectFit: 'cover',
   };
 

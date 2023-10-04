@@ -1,4 +1,4 @@
-import React,  { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import hilltop from '../static/symbieat_images/hilltop.jfif';
 import lhbc from '../static/symbieat_images/lhbc.jpg';
 import sicsr from '../static/symbieat_images/sicsr.jpg';
@@ -10,23 +10,23 @@ function Carousel() {
   const carouselLocations = [
     {
       title: 'Lavale Hillbase Campus',
-      imageSrc: lhbc, 
+      imageSrc: lhbc,
     },
     {
       title: 'SMCW Cafeteria',
-      imageSrc: smcw, 
+      imageSrc: smcw,
     },
     {
       title: 'Hilltop Campus',
-      imageSrc: hilltop, 
+      imageSrc: hilltop,
     },
     {
       title: 'SYMBIEAT at SICSR & SiG.',
-      imageSrc: sicsr, 
+      imageSrc: sicsr,
     },
     {
       title: 'Viman Nagar',
-      imageSrc: viman_nagar, 
+      imageSrc: viman_nagar,
     },
   ];
 
@@ -35,13 +35,13 @@ function Carousel() {
     const myCarousel = new window.bootstrap.Carousel(document.getElementById('myCarousel'), {
       interval: 3000, // Set the auto-play interval to 3000ms (3 seconds)
     });
-    
+
     // Ensure the carousel is paused when the component unmounts
     return () => {
       myCarousel.pause();
     };
   }, []);
-    
+
 
   return (
     <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
@@ -85,7 +85,7 @@ function Carousel() {
       >
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Previous</span>
-      </a>  
+      </a>
       <a
         className="carousel-control-next"
         href="#myCarousel"

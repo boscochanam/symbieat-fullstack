@@ -1,13 +1,14 @@
 /* FoodItems.css */
 .card {
-    margin: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    transition: transform 0.2s; /* Add a transform transition for a smooth hover effect */
-  }
-  
-  .card:hover {
-    transform: scale(1.05); /* Scale up the card on hover */
-  }
-  
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  /* Add a transform transition for a smooth hover effect */
+}
+
+.card:hover {
+  transform: scale(1.05);
+  /* Scale up the card on hover */
+}

@@ -6,7 +6,7 @@ function Header(props) {
   const cartCountStyle = {
     weight: 'strong',
     padding: '5px',
-    color: 'white',        
+    color: 'white',
     margin: '10px',
   };
 
@@ -24,21 +24,21 @@ function Header(props) {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/">Home</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/menu">Menu</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/locations">Locations</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/cart">Cart</NavLink>
-          </li>
-        </ul>
-      </div>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink className="nav-link" aria-current="page" to="/">Home</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/menu">Menu</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/locations">Locations</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/cart">Cart</NavLink>
+            </li>
+          </ul>
+        </div>
         <button className='btn btn-success' onClick={() => { resetCart(); window.location.href = "/login"; }}>Log In</button>
         <div style={cartCountStyle}>
           <ShoppingCartIcon fontSize="small" />
