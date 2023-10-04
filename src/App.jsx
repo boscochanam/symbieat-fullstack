@@ -5,6 +5,8 @@ import Home from './Pages/Home';
 import Menu from './Pages/Menu';
 import Locations from './Pages/Locations';
 import Cart from './Pages/Cart'
+import LoginPage from './Pages/LoginPage';
+import RegisterPage from './Pages/RegisterPage';
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -73,6 +75,32 @@ function App() {
           path="/cart"
           element={
             <Cart
+              cartItems={cartItems} // Pass the cartItems array
+              cartCount={cartCount}
+              setCartCount={setCartCount}
+              cartTotal={cartTotal}
+              setCartTotal={setCartTotal}
+              clearCart={clearCart}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <LoginPage
+              cartItems={cartItems} // Pass the cartItems array
+              cartCount={cartCount}
+              setCartCount={setCartCount}
+              cartTotal={cartTotal}
+              setCartTotal={setCartTotal}
+              clearCart={clearCart}
+            />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RegisterPage
               cartItems={cartItems} // Pass the cartItems array
               cartCount={cartCount}
               setCartCount={setCartCount}
