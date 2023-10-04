@@ -6,6 +6,7 @@ import sicsr from '../static/symbieat_images/sicsr.jpg';
 import smcw from '../static/symbieat_images/smcw.jpg';
 import viman_nagar from '../static/symbieat_images/viman_nagar.jpg';
 import scms from '../static/symbieat_images/scms.jpg';
+import Footer from '../components/Footer';
 
 function Locations(props) {
   const locations = [
@@ -87,6 +88,8 @@ function Locations(props) {
           ))}
         </div>
       </div>
+      {/* Include the Footer component */}
+      <Footer />
     </div>
   );
 }

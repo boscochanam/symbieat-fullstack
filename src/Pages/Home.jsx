@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import FoodItems from '../components/FoodItems';
 import LocationSection from '../components/LocationSection';
 import Carousel from '../components/Carousel';
+import Footer from '../components/Footer';
 
 function Home(props) {
   return (
@@ -25,6 +26,9 @@ function Home(props) {
         addToCart={props.addToCart}
         addToTotal={props.addToTotal}
       />
+
+      {/* Include the Footer component */}
+      <Footer />
     </div>
   );
 }

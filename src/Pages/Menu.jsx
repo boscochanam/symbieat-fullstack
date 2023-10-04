@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Popup from '../components/Popup';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import pizza from '../static/food_images/pizza.jpg';
 import burger from '../static/food_images/burger.webp';
 import fries from '../static/food_images/fries.jpg';
@@ -163,6 +164,8 @@ function FoodItems(props) {
           ))}
         </div>
       </div>
+      {/* Include the Footer component */}
+      <Footer />
     </div>
   );
 }
