@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import symbieat from '../static/symbieat_images/symbieat_vertical.jpg';
 
@@ -10,13 +10,42 @@ function LoginPage() {
 
   const cardStyle = {
     borderRadius: '1rem',
-    
   };
 
   const imgStyle = {
     borderRadius: '1rem 0 0 1rem',
   };
 
+  const [prnError, setPrnError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Get the values from the input fields
+    const prnValue = e.target.prn.value;
+    const passwordValue = e.target.password.value;
+
+    // Reset previous error messages
+    setPrnError('');
+    setPasswordError('');
+
+    // Validate PRN
+    if (prnValue.length !== 11) {
+      setPrnError('PRN must be 11 digits long');
+      return;
+    }
+
+    // Validate password
+    if (passwordValue.length < 3) {
+      setPasswordError('Password must be at least 3 characters long');
+      return;
+    }
+
+    // If both PRN and password are valid, you can proceed with login logic here
+    // For now, you can just log a success message
+    console.log('Login successful');
+  };
 
   return (
     <section className="vh-100" style={containerStyle}>
@@ -27,7 +56,7 @@ function LoginPage() {
               <div className="row g-0">
                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                   <img
-                    src= {symbieat}
+                    src={symbieat}
                     alt="login form"
                     className="img-fluid"
                     style={imgStyle}
@@ -35,7 +64,7 @@ function LoginPage() {
                 </div>
                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                   <div className="card-body p-4 p-lg-5 text-black">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                       <div className="d-flex align-items-center mb-3 pb-1">
                         <span className="h1 fw-bold mb-0">Login to Symbieat</span>
                       </div>
@@ -46,13 +75,15 @@ function LoginPage() {
 
                       <div className="form-outline mb-4">
                         <input
-                          type="email"
+                          type="number"
                           id="form2Example17"
                           className="form-control form-control-lg"
+                          name="prn"
                         />
                         <label className="form-label" htmlFor="form2Example17">
-                          Email address
+                          PRN (11 digits)
                         </label>
+                        {prnError && <div className="text-danger">{prnError}</div>}
                       </div>
 
                       <div className="form-outline mb-4">
@@ -60,14 +91,16 @@ function LoginPage() {
                           type="password"
                           id="form2Example27"
                           className="form-control form-control-lg"
+                          name="password"
                         />
                         <label className="form-label" htmlFor="form2Example27">
-                          Password
+                          Password (min 3 characters)
                         </label>
+                        {passwordError && <div className="text-danger">{passwordError}</div>}
                       </div>
 
                       <div className="pt-1 mb-4">
-                        <button className="btn btn-dark btn-lg btn-block" type="button">
+                        <button className="btn btn-dark btn-lg btn-block" type="submit">
                           Login
                         </button>
                       </div>
@@ -76,7 +109,7 @@ function LoginPage() {
                         Forgot password?
                       </a>
                       <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
-                        <Link to="/register" >Register for a new account</Link>
+                        <Link to="/register">Register for a new account</Link>
                       </p>
                       <Link to="/" className="btn btn-danger btn-lg btn-block">
                         Back to Home
