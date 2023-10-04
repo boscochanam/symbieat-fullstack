@@ -24,6 +24,12 @@ function Home(props) {
       <div className="container text-center">
         <Carousel />
       </div>
+
+      {/* Add the "Best Seller" heading */}
+      <div className="container text-center mt-4">
+        <h2 style={{ borderTop: '2px solid', borderBottom: '2px solid', fontWeight: 'bold', fontSize: '250%' }}>Best Sellers</h2>
+      </div>
+
       {/* Pass the addToCart function to FoodItems */}
       <FoodItems
         addToCart={props.addToCart}

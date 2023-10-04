@@ -70,7 +70,7 @@ function Locations(props) {
       </div>
 
       <div className="locations-page">
-        <h1 className="text-center">Our Locations</h1>
+        {/* <h1 className="text-center">Our Locations</h1> */}
         <div className="row justify-content-center">
           {locations.map((location, index) => (
             <div className="col-md-4 mb-4 px-2" key={index}>
