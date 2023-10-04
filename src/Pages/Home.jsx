@@ -16,8 +16,8 @@ function Home(props) {
           setCartTotal={props.setCartTotal}
           clearCart={props.clearCart}
           loginState={props.loginState}
-          setLoginState = {props.loginState}
-          login = {props.login}
+          setLoginState={props.loginState}
+          login={props.login}
         />
       </div>
       <LocationSection />

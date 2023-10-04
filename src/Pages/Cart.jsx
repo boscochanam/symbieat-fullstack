@@ -14,8 +14,8 @@ function Cart({ cartItems, cartTotal, setCartTotal, ...props }) {
         setCartTotal={setCartTotal}
         clearCart={props.clearCart}
         loginState={props.loginState}
-        setLoginState = {props.loginState}
-        login = {props.login}
+        setLoginState={props.loginState}
+        login={props.login}
       />
 
       {/* Main Content */}
