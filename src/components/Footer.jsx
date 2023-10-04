@@ -4,35 +4,41 @@ import instagramIcon from '../static/social_media_icons/instagram.png';
 import twitterIcon from '../static/social_media_icons/twitter.png';
 
 function Footer() {
+  // Define styles for the footer
   const footerStyle = {
     backgroundColor: '#333',
     color: '#fff',
     padding: '20px 0',
   };
 
+  // Style for the main heading
   const headingStyle = {
     color: '#fff',
     fontSize: '24px',
     marginBottom: '10px',
   };
 
+  // Style for text elements
   const textStyle = {
     fontSize: '18px',
     marginBottom: '5px',
   };
 
+  // Style for links
   const linkStyle = {
     color: '#fff',
     textDecoration: 'none',
     fontSize: '18px',
   };
 
+  // Style for the list of social media icons
   const listStyle = {
     listStyle: 'none',
     padding: '0',
     textAlign: 'right', // Align the list to the right
   };
 
+  // Style for individual list items (icons)
   const listItemStyle = {
     display: 'inline',
     marginLeft: '10px', // Add some space between icons
@@ -51,16 +57,19 @@ function Footer() {
             <h3 style={{ ...headingStyle, textAlign: 'right' }}>Follow Us</h3>
             <ul style={listStyle}>
               <li style={listItemStyle}>
+                {/* Link to Facebook */}
                 <a href="https://www.facebook.com" style={linkStyle}>
                   <img src={facebookIcon} alt="Facebook" width="24" height="24" />
                 </a>
               </li>
               <li style={listItemStyle}>
+                {/* Link to Twitter */}
                 <a href="https://www.twitter.com" style={linkStyle}>
                   <img src={twitterIcon} alt="Twitter" width="24" height="24" />
                 </a>
               </li>
               <li style={listItemStyle}>
+                {/* Link to Instagram */}
                 <a href="https://www.instagram.com" style={linkStyle}>
                   <img src={instagramIcon} alt="Instagram" width="24" height="24" />
                 </a>

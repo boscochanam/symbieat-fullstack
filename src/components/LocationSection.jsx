@@ -1,86 +1,109 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Header from '../components/Header';
+import hilltop from '../static/symbieat_images/hilltop.jfif';
+import lhbc from '../static/symbieat_images/lhbc.jpg';
+import sicsr from '../static/symbieat_images/sicsr.jpg';
+import smcw from '../static/symbieat_images/smcw.jpg';
+import viman_nagar from '../static/symbieat_images/viman_nagar.jpg';
+import scms from '../static/symbieat_images/scms.jpg';
+import Footer from '../components/Footer';
 
-function LocationSection() {
-  const sectionStyle = {
-    backgroundColor: '#FF4c4C',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    minHeight: '50vh',
-    display: 'flex',
-    alignItems: 'center',
-  };
-
-  // Define available locations
-  const availableLocations = [
-    "Lavale Hillbase Campus",
-    "SMCW Cafeteria",
-    "Hilltop Campus",
-    "SYMBIEAT at SICSR & SiG.",
-    "Viman Nagar",
+function Locations(props) {
+  // Define an array of location objects
+  const locations = [
+    {
+      title: 'Lavale Hillbase Campus',
+      description: 'This is the Lavale Hillbase Campus description.',
+      imageSrc: lhbc,
+    },
+    {
+      title: 'SMCW Cafeteria',
+      description: 'This is the SMCW Cafeteria description.',
+      imageSrc: smcw,
+    },
+    {
+      title: 'Hilltop Campus',
+      description: 'This is the Hilltop Campus description.',
+      imageSrc: hilltop,
+    },
+    {
+      title: 'SYMBIEAT at SICSR & SiG.',
+      description: 'This is the SYMBIEAT at SICSR & SiG. description.',
+      imageSrc: sicsr,
+    },
+    {
+      title: 'Viman Nagar',
+      description: 'This is the Viman Nagar description.',
+      imageSrc: viman_nagar,
+    },
+    {
+      title: 'SCMS',
+      description: 'This is the SCMS description.', // Corrected the description here
+      imageSrc: scms,
+    },
   ];
 
-  // State to track the selected location
-  const [selectedLocation, setSelectedLocation] = useState("");
-
-  // State to track whether the location dropdown is open
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  // Function to toggle the dropdown
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  // Function to handle location selection
-  const handleLocationSelect = (location) => {
-    setSelectedLocation(location);
-    setIsDropdownOpen(false); // Close the dropdown
-  };
-
-  // Function to reset the selected location
-  const resetLocation = () => {
-    setSelectedLocation("");
+  // Define a style for the location images
+  const imageStyle = {
+    height: '300px',
+    objectFit: 'cover',
   };
 
   return (
-    <section className="location-section mb-3" style={sectionStyle}>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6 offset-md-3 text-center">
-            <h2 className="text-light">Find your nearest Symbieat</h2>
-            <p className="text-white">Enter your location to find out the closest Symbieat location.</p>
-            <div className="input-group mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter your location"
-                aria-label="Enter your location"
-                onClick={toggleDropdown} // Open the dropdown on input click
-                value={selectedLocation} // Display the selected location in the input field
-                readOnly // Make the input field read-only
-              />
-              <button className="btn btn-dark" type="button">Search</button>
-              <button className="btn btn-dark" type="button" onClick={resetLocation}>Reset</button>
+    <div>
+      <div className="navbar-container">
+        {/* Render the Header component and pass cart-related props */}
+        <Header
+          cartCount={props.cartCount}
+          setCartCount={props.setCartCount}
+          cartTotal={props.cartTotal}
+          setCartTotal={props.setCartTotal}
+          clearCart={props.clearCart}
+        />
+      </div>
+
+      {/* Black section with "Menu" */}
+      <div className="menu-section mb-5" style={menuStyle}>
+        <h1 className="text-center text-white">Locations</h1>
+      </div>
+
+      <div className="locations-page">
+        <h1 className="text-center">Our Locations</h1>
+        <div className="row justify-content-center">
+          {locations.map((location, index) => (
+            <div className="col-md-4 mb-4 px-2" key={index}>
+              {/* Create a card for each location */}
+              <div className="card">
+                {/* Display location image */}
+                <img
+                  src={location.imageSrc}
+                  className="card-img-top"
+                  alt={location.title}
+                  style={imageStyle}
+                />
+                <div className="card-body">
+                  {/* Display location title and description */}
+                  <h5 className="card-title">{location.title}</h5>
+                  <p className="card-text">{location.description}</p>
+                </div>
+              </div>
             </div>
-            {/* Location dropdown (floats over content) */}
-            {isDropdownOpen && (
-              <ul className="list-group" style={{ position: 'absolute', zIndex: 1 }}>
-                {availableLocations.map((location, index) => (
-                  <li
-                    className="list-group-item"
-                    key={index}
-                    onClick={() => handleLocationSelect(location)} // Handle location selection
-                  >
-                    {location}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          ))}
         </div>
       </div>
-    </section>
+      {/* Include the Footer component */}
+      <Footer />
+    </div>
   );
 }
 
-export default LocationSection;
+// Define the style for the "Menu" section
+const menuStyle = {
+  backgroundColor: '#2D2D2D', // Black background color
+  minHeight: '50vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+export default Locations;

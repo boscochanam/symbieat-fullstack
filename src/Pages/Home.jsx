@@ -9,6 +9,7 @@ function Home(props) {
   return (
     <div>
       <div className="navbar-container">
+        {/* Render the Header component and pass props for cart functionality */}
         <Header
           cartCount={props.cartCount}
           setCartCount={props.setCartCount}
@@ -17,11 +18,16 @@ function Home(props) {
           clearCart={props.clearCart}
         />
       </div>
+      {/* Render the LocationSection component */}
       <LocationSection />
       <div className="container text-center">
+        {/* Render the Carousel component */}
         <Carousel />
       </div>
-      {/* Pass the addToCart function to FoodItems */}
+      {/* 
+        Pass the addToCart function and addToTotal function as props to FoodItems component
+        These props are used to manage the shopping cart functionality
+      */}
       <FoodItems
         addToCart={props.addToCart}
         addToTotal={props.addToTotal}
