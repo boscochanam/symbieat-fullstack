@@ -45,7 +45,7 @@ function FoodItemCard(props) {
   );
 }
 
-function FoodItems(props) {
+function Menu(props) {
   const foodItems = [
     {
       title: 'Burger',
@@ -178,4 +178,4 @@ const menuStyle = {
   justifyContent: 'center',
 };
 
-export default FoodItems;
+export default Menu;
