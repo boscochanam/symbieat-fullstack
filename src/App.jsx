@@ -8,10 +8,17 @@ import Cart from './Pages/Cart'
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 
+
 function App() {
   const [cartCount, setCartCount] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+  const [loginState, setLoginState] = useState("");
+  
+
+  const login = (username) => { 
+    setLoginState( c => username);
+  };
 
   const addToCart = (item) => {
     setCartItems(c => [...c, item]); // Add the item to the cartItems array
@@ -40,6 +47,8 @@ function App() {
               addToCart={addToCart}
               addToTotal={addToTotal}
               clearCart={clearCart}
+              loginState={loginState}
+              login = {login}
             />
           }
         />
@@ -54,6 +63,8 @@ function App() {
               addToCart={addToCart}
               addToTotal={addToTotal}
               clearCart={clearCart}
+              loginState={loginState}
+              login = {login}
             />
           }
         />
@@ -68,6 +79,8 @@ function App() {
               addToCart={addToCart}
               addToTotal={addToTotal}
               clearCart={clearCart}
+              loginState={loginState}
+              login = {login}
             />
           }
         />
@@ -81,6 +94,8 @@ function App() {
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
               clearCart={clearCart}
+              loginState={loginState}
+              login = {login}
             />
           }
         />
@@ -94,6 +109,8 @@ function App() {
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
               clearCart={clearCart}
+              loginState={loginState}
+              login = {login}
             />
           }
         />
@@ -107,6 +124,8 @@ function App() {
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
               clearCart={clearCart}
+              loginState={loginState}
+              login = {login}
             />
           }
         />

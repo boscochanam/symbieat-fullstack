@@ -149,6 +149,9 @@ function Menu(props) {
           cartTotal={props.cartTotal}
           setCartTotal={props.setCartTotal}
           clearCart={props.clearCart}
+          loginState={props.loginState}
+          setLoginState = {props.loginState}
+          login = {props.login}
         />
       </div>
       <div className="menu-section" style={menuStyle}>
