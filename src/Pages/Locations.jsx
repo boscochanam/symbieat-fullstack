@@ -9,7 +9,6 @@ import scms from '../static/symbieat_images/scms.jpg';
 import Footer from '../components/Footer';
 
 function Locations(props) {
-  // Define an array of location objects
   const locations = [
     {
       title: 'Lavale Hillbase Campus',
@@ -38,12 +37,12 @@ function Locations(props) {
     },
     {
       title: 'SCMS',
-      description: 'This is the SCMS description.', // Corrected the description here
+      description: 'This is the Viman Nagar description.',
       imageSrc: scms,
     },
   ];
 
-  // Define a style for the location images
+  // Set a fixed height for the images
   const imageStyle = {
     height: '300px',
     objectFit: 'cover',
@@ -52,7 +51,7 @@ function Locations(props) {
   return (
     <div>
       <div className="navbar-container">
-        {/* Render the Header component and pass cart-related props */}
+        {/* Render the Header component */}
         <Header
           cartCount={props.cartCount}
           setCartCount={props.setCartCount}
@@ -72,9 +71,8 @@ function Locations(props) {
         <div className="row justify-content-center">
           {locations.map((location, index) => (
             <div className="col-md-4 mb-4 px-2" key={index}>
-              {/* Create a card for each location */}
+              {/* Add margin to the card */}
               <div className="card">
-                {/* Display location image */}
                 <img
                   src={location.imageSrc}
                   className="card-img-top"
@@ -82,7 +80,6 @@ function Locations(props) {
                   style={imageStyle}
                 />
                 <div className="card-body">
-                  {/* Display location title and description */}
                   <h5 className="card-title">{location.title}</h5>
                   <p className="card-text">{location.description}</p>
                 </div>
@@ -97,7 +94,6 @@ function Locations(props) {
   );
 }
 
-// Define the style for the "Menu" section
 const menuStyle = {
   backgroundColor: '#2D2D2D', // Black background color
   minHeight: '50vh',

@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import symbieat from '../static/symbieat_images/symbieat_vertical.jpg';
 
-// Define the LoginPage component
 function LoginPage() {
-  // Define CSS styles
   const containerStyle = {
     backgroundColor: '#FF4C4C',
     height: '30vh',
@@ -18,11 +16,9 @@ function LoginPage() {
     borderRadius: '1rem 0 0 1rem',
   };
 
-  // Initialize state variables for error messages
   const [prnError, setPrnError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  // Define the form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -51,7 +47,6 @@ function LoginPage() {
     console.log('Login successful');
   };
 
-  // Render the login form
   return (
     <section className="vh-100" style={containerStyle}>
       <div className="container py-5 h-100">
@@ -130,6 +125,5 @@ function LoginPage() {
     </section>
   );
 }
-
 
 export default LoginPage;

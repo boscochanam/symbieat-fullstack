@@ -61,7 +61,7 @@ function Menu(props) {
     },
     {
       title: 'Fries',
-      description: 'Freshly baked pizza with your favorite toppings',
+      description: 'Crispy fries, made using organic potatoes and fresh salt',
       price: 400,
       imageSrc: fries,
     },
@@ -73,7 +73,7 @@ function Menu(props) {
     },
     {
       title: 'Salad',
-      description: 'Healthy and colorful salad with a variety of veggies',
+      description: 'Healthy and colorful salad',
       price: 250,
       imageSrc: salad,
     },
@@ -85,7 +85,7 @@ function Menu(props) {
     },
     {
       title: 'Virgin Cucumber Gimlet',
-      description: 'Soda, slices of cucumber, lime juice, simple syrup',
+      description: 'Soda, slices of cucumber, simple syrup',
       price: 150,
       imageSrc: cucumber,
     },
@@ -97,7 +97,7 @@ function Menu(props) {
     },
     {
       title: 'Berry Burlesque',
-      description: 'Lime juice, honey syrup, black currant, mint leaves',
+      description: 'Lime juice, honey syrup, black currant',
       price: 800,
       imageSrc: berry,
     },
@@ -133,7 +133,7 @@ function Menu(props) {
     },
     {
       title: 'Veg Thali',
-      description: 'A delightful platter featuring an assortment of vegetarian dishes for a complete meal experience',
+      description: 'A delightful platter featuring an assortment of vegetarian dishes',
       price: 80,
       imageSrc: veg_thali,
     }
