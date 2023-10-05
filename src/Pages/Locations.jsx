@@ -14,31 +14,37 @@ function Locations(props) {
       title: 'Lavale Hillbase Campus',
       description: 'This is the Lavale Hillbase Campus description.',
       imageSrc: lhbc,
+      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
     },
     {
       title: 'SMCW Cafeteria',
       description: 'This is the SMCW Cafeteria description.',
       imageSrc: smcw,
+      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
     },
     {
       title: 'Hilltop Campus',
       description: 'This is the Hilltop Campus description.',
       imageSrc: hilltop,
+      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
     },
     {
       title: 'SYMBIEAT at SICSR & SiG.',
       description: 'This is the SYMBIEAT at SICSR & SiG. description.',
       imageSrc: sicsr,
+      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
     },
     {
       title: 'Viman Nagar',
       description: 'This is the Viman Nagar description.',
       imageSrc: viman_nagar,
+      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
     },
     {
       title: 'SCMS',
       description: 'This is the Viman Nagar description.',
       imageSrc: scms,
+      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
     },
   ];
 
@@ -46,6 +52,11 @@ function Locations(props) {
   const imageStyle = {
     height: '300px',
     objectFit: 'cover',
+  };
+
+  // CSS rule to remove underline from anchor elements
+  const anchorStyle = {
+    textDecoration: 'none',
   };
 
   return (
@@ -59,8 +70,8 @@ function Locations(props) {
           setCartTotal={props.setCartTotal}
           clearCart={props.clearCart}
           loginState={props.loginState}
-          setLoginState = {props.loginState}
-          login = {props.login}
+          setLoginState={props.loginState}
+          login={props.login}
         />
       </div>
 
@@ -74,19 +85,21 @@ function Locations(props) {
         <div className="row justify-content-center">
           {locations.map((location, index) => (
             <div className="col-md-4 mb-4 px-2" key={index}>
-              {/* Add margin to the card */}
-              <div className="card">
-                <img
-                  src={location.imageSrc}
-                  className="card-img-top"
-                  alt={location.title}
-                  style={imageStyle}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{location.title}</h5>
-                  <p className="card-text">{location.description}</p>
+              {/* Wrap the entire card in an anchor with the mapLink */}
+              <a href={location.mapLink} target="_blank" rel="noopener noreferrer" style={anchorStyle}>
+                <div className="card">
+                  <img
+                    src={location.imageSrc}
+                    className="card-img-top"
+                    alt={location.title}
+                    style={imageStyle}
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{location.title}</h5>
+                    <p className="card-text">{location.description}</p>
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
           ))}
         </div>
