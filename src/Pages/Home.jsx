@@ -43,7 +43,7 @@ function Home(props) {
 
       {/* Add testimonials */}
       <div className="container text-center mt-4">
-        <h2 style={{ borderTop: '2px solid', borderBottom: '2px solid', fontWeight: 'bold', fontSize: '250%' }}>Testimonials</h2>
+        <h2 style={{ borderTop: '2px solid', borderBottom: '2px solid', fontWeight: 'bold', fontSize: '250%' }}>Trusted by many</h2>
       </div>
 
       <div className="container mt-4">
@@ -72,7 +72,7 @@ function Home(props) {
               </div>
             </div>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-4 mb-5">
             <div className="testimonial-box" style={{ border: '2px solid black', padding: '10px' }}>
               <img src={googleImage} alt="Google" className="testimonial-image" style={{ maxWidth: '5%', maxHeight: '5%' }} />
               <div className="testimonial-content">

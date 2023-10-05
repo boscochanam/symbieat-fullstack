@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 // import Footer from '../components/Footer';
 import '../static/style.css';
+import Popup from '../components/Popup';
+
 
 function Cart({ cartItems, cartTotal, setCartTotal, ...props }) {
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handlePlaceOrder = () => {
+    // Trigger an action when "Place Order" is clicked (e.g., display "Payment Successful")
+    setShowPopup(true);
+
+    // Clear the cart (You should implement this function)
+  };
+
+  
   return (
     <div className="wrapper">
       {/* Header */}
@@ -15,7 +28,7 @@ function Cart({ cartItems, cartTotal, setCartTotal, ...props }) {
         clearCart={props.clearCart}
         loginState={props.loginState}
         setLoginState={props.loginState}
-        login={props.login}
+        login={props.login} 
       />
 
       {/* Main Content */}
@@ -63,15 +76,17 @@ function Cart({ cartItems, cartTotal, setCartTotal, ...props }) {
                   ))}
                 </div>
                 <p className="total">Total: &#8377; {cartTotal.toFixed(2)}</p>
-                <button className="btn btn-primary btn-block place-order-button">Place Order</button>
+                <button className="btn btn-primary btn-block place-order-button" onClick={handlePlaceOrder}>Place Order</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Include the Footer component
-      <Footer /> */}
+      <Popup
+        show={showPopup}
+        message="Payment Successful"
+        onPopupClick={() => setShowPopup(false)} // Close the popup when clicked
+      />
     </div>
   );
 }

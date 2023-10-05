@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import facebookIcon from '../static/social_media_icons/facebook.png';
 import instagramIcon from '../static/social_media_icons/instagram.png';
 import twitterIcon from '../static/social_media_icons/twitter.png';
+import ReviewPopup from './ReviewPopup';
 
 function Footer() {
   const footerStyle = {
@@ -71,11 +72,12 @@ function Footer() {
   };
 
   const [reviewText, setReviewText] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   const handlePostReview = () => {
-    // You can implement the logic to post the review here.
-    // For demonstration purposes, we will simply log the review text to the console.
-    console.log('Posted review:', reviewText);
+    setShowPopup(true);
+    setReviewText('');
+    setTimeout(() => setShowPopup(false), 3000);
   };
 
   return (
@@ -109,6 +111,7 @@ function Footer() {
           </div>
         </div>
       </div>
+
       <div className="container">
         <div className="row">
           <div className="col-md-12">
@@ -127,6 +130,9 @@ function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Add the Popup component */}
+      <ReviewPopup show={showPopup} message="Review submitted!" />
     </footer>
   );
 }
