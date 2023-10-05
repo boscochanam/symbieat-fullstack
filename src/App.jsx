@@ -7,6 +7,7 @@ import Locations from './Pages/Locations';
 import Cart from './Pages/Cart'
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
+import Payment from './Pages/Payment';
 
 
 function App() {
@@ -123,6 +124,22 @@ function App() {
               setCartCount={setCartCount}
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
+              clearCart={clearCart}
+              loginState={loginState}
+              login = {login}
+            />
+          }
+        />
+        <Route
+          path="/payment"
+          element={
+            <Payment
+              cartCount={cartCount}
+              setCartCount={setCartCount}
+              cartTotal={cartTotal}
+              setCartTotal={setCartTotal}
+              addToCart={addToCart}
+              addToTotal={addToTotal}
               clearCart={clearCart}
               loginState={loginState}
               login = {login}

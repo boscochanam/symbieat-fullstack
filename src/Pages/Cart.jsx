@@ -3,6 +3,7 @@ import Header from '../components/Header';
 // import Footer from '../components/Footer';
 import '../static/style.css';
 import Popup from '../components/Popup';
+import { NavLink } from 'react-router-dom';
 
 
 function Cart({ cartItems, cartTotal, setCartTotal, ...props }) {
@@ -76,7 +77,7 @@ function Cart({ cartItems, cartTotal, setCartTotal, ...props }) {
                   ))}
                 </div>
                 <p className="total">Total: &#8377; {cartTotal.toFixed(2)}</p>
-                <button className="btn btn-primary btn-block place-order-button" onClick={handlePlaceOrder}>Place Order</button>
+                <NavLink to="/payment" className="btn btn-primary btn-block place-order-button">Place Order</NavLink>
               </div>
             </div>
           </div>
