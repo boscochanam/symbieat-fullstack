@@ -60,8 +60,8 @@ function LoginPage(props) {
         setCartTotal={props.setCartTotal}
         clearCart={props.clearCart}
         loginState={props.loginState}
-        setLoginState = {props.loginState}
-        login = {props.login}
+        setLoginState={props.loginState}
+        login={props.login}
       />
       <section className="vh-100" style={containerStyle}>
         <div className="container py-5 h-100">

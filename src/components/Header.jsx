@@ -33,7 +33,7 @@ function Header(props) {
     <nav className="navbar bg-dark navbar-expand-lg" style={{ backgroundColor: '#EAEAEA' }} data-bs-theme="dark">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/"><img src="../favicon.ico" alt="Symbieat Logo" height="30" /></NavLink>
-          
+
 
         <button
           className={`navbar-toggler ${menuOpen ? '' : 'collapsed'}`}
@@ -75,7 +75,7 @@ function Header(props) {
           )}
         </div>
         {props.loginState ? (
-          <button className="btn btn-danger" onClick={() => {resetLogin();}}>
+          <button className="btn btn-danger" onClick={() => { resetLogin(); }}>
             Logged in as {props.loginState}, Log Out
           </button>
         ) : (
