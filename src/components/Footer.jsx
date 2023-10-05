@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import facebookIcon from '../static/social_media_icons/facebook.png';
 import instagramIcon from '../static/social_media_icons/instagram.png';
 import twitterIcon from '../static/social_media_icons/twitter.png';
@@ -38,6 +38,46 @@ function Footer() {
     marginLeft: '10px', // Add some space between icons
   };
 
+  const reviewStyle = {
+    color: '#fff',
+    fontSize: '24px',
+    marginBottom: '10px',
+    marginTop: '20px',
+  };
+
+  const reviewContainerStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+  };
+
+  const reviewTextBoxStyle = {
+    backgroundColor: 'white',
+    color: '#333',
+    padding: '10px',
+    border: 'none',
+    width: '100%',
+    height: '100px',
+    fontSize: '16px',
+    marginBottom: '10px',
+  };
+
+  const postButtonStyle = {
+    backgroundColor: 'lightgreen',
+    color: '#333',
+    padding: '10px',
+    border: 'none',
+    fontSize: '18px',
+    cursor: 'pointer',
+  };
+
+  const [reviewText, setReviewText] = useState('');
+
+  const handlePostReview = () => {
+    // You can implement the logic to post the review here.
+    // For demonstration purposes, we will simply log the review text to the console.
+    console.log('Posted review:', reviewText);
+  };
+
   return (
     <footer style={footerStyle}>
       <div className="container">
@@ -66,6 +106,24 @@ function Footer() {
                 </a>
               </li>
             </ul>
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <h3 style={reviewStyle}>Leave a review</h3>
+            <div style={reviewContainerStyle}>
+              <textarea
+                style={reviewTextBoxStyle}
+                placeholder="Write your review here..."
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+              ></textarea>
+              <button style={postButtonStyle} onClick={handlePostReview}>
+                Post
+              </button>
+            </div>
           </div>
         </div>
       </div>
