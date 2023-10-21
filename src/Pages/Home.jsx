@@ -43,7 +43,7 @@ function Home(props) {
 
       {/* Add testimonials */}
       <div className="container text-center mt-4">
-        <h2 style={{ borderTop: '2px solid', borderBottom: '2px solid', fontWeight: 'bold', fontSize: '250%' }}>Trusted by many</h2>
+        <h2 style={{ borderTop: '2px solid', borderBottom: '2px solid', fontWeight: 'bold', fontSize: '250%' }}>Trusted by many platforms</h2>
       </div>
 
       <div className="container mt-4">
