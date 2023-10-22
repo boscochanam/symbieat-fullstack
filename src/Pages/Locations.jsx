@@ -1,52 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'; // Import Axios for making API requests
 import Header from '../components/Header';
-import hilltop from '../static/symbieat_images/hilltop.jfif';
-import lhbc from '../static/symbieat_images/lhbc.jpg';
-import sicsr from '../static/symbieat_images/sicsr.jpg';
-import smcw from '../static/symbieat_images/smcw.jpg';
-import viman_nagar from '../static/symbieat_images/viman_nagar.jpg';
-import scms from '../static/symbieat_images/scms.jpg';
 import Footer from '../components/Footer';
 
 function Locations(props) {
-  const locations = [
-    {
-      title: 'Lavale Hillbase Campus',
-      description: 'This is the Lavale Hillbase Campus description.',
-      imageSrc: lhbc,
-      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
-    },
-    {
-      title: 'SMCW Cafeteria',
-      description: 'This is the SMCW Cafeteria description.',
-      imageSrc: smcw,
-      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
-    },
-    {
-      title: 'Hilltop Campus',
-      description: 'This is the Hilltop Campus description.',
-      imageSrc: hilltop,
-      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
-    },
-    {
-      title: 'SYMBIEAT at SICSR & SiG.',
-      description: 'This is the SYMBIEAT at SICSR & SiG. description.',
-      imageSrc: sicsr,
-      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
-    },
-    {
-      title: 'Viman Nagar',
-      description: 'This is the Viman Nagar description.',
-      imageSrc: viman_nagar,
-      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
-    },
-    {
-      title: 'SCMS',
-      description: 'This is the Viman Nagar description.',
-      imageSrc: scms,
-      mapLink: 'https://maps.app.goo.gl/8zR8ADXaeMZ66ozB6', // Google Maps link
-    },
-  ];
+  // Define a state variable to store the location data
+  const [locations, setLocations] = useState([]);
+
+  // Make an API request to fetch location data when the component mounts
+  useEffect(() => {
+    // Make a GET request to your API endpoint (e.g., /api/locations)
+    axios.get('/api/locations')
+      .then((response) => {
+        setLocations(response.data); // Update the state with the fetched data
+      })
+      .catch((error) => {
+        console.error('Error fetching location data:', error);
+      });
+  }, []); // The empty dependency array ensures the effect runs only once
 
   // Set a fixed height for the images
   const imageStyle = {
@@ -75,17 +46,15 @@ function Locations(props) {
         />
       </div>
 
-      {/* Black section with "Menu" */}
+      {/* Black section with "Locations" */}
       <div className="menu-section mb-5" style={menuStyle}>
         <h1 className="text-center text-white">Locations</h1>
       </div>
 
       <div className="locations-page">
-        {/* <h1 className="text-center">Our Locations</h1> */}
         <div className="row justify-content-center">
           {locations.map((location, index) => (
             <div className="col-md-4 mb-4 px-2" key={index}>
-              {/* Wrap the entire card in an anchor with the mapLink */}
               <a href={location.mapLink} target="_blank" rel="noopener noreferrer" style={anchorStyle}>
                 <div className="card">
                   <img

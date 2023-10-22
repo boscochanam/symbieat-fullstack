@@ -1,12 +1,10 @@
 const { ViewModuleSharp } = require('@material-ui/icons');
 const mongoose = require('mongoose');
-const itemSchema = new mongoose.Schema({
+const locationSchema = new mongoose.Schema({
     name: String,
-    price: Number,
     description: String,
     image: String,
-    rating: Number,
 });
 
-const itemModel = mongoose.model('Item', itemSchema);
-module.exports = itemModel;
+const locationModel = mongoose.model('Location', locationSchema);
+module.exports = locationModel;
