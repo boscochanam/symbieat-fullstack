@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './static/style.css';
+import { ToastContainer } from 'react-toastify'; // Import ToastContainer from react-toastify
+import 'react-toastify/dist/ReactToastify.css'; // Import the styles
 import Home from './Pages/Home';
 import Menu from './Pages/Menu';
 import Locations from './Pages/Locations';
@@ -9,7 +11,6 @@ import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import Payment from './Pages/Payment';
 import axios from 'axios';
-
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -20,12 +21,12 @@ function App() {
   axios.defaults.baseURL = 'http://localhost:8080';
 
   const login = (username) => { 
-    setLoginState( c => username);
+    setLoginState(c => username);
   };
 
   const addToCart = (item) => {
-    setCartItems(c => [...c, item]); // Add the item to the cartItems array
-    setCartCount(c => c + 1); // Update the cart count
+    setCartItems(c => [...c, item]);
+    setCartCount(c => c + 1);
   };
 
   const addToTotal = (amt) => {
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <Router>
+      <ToastContainer /> {/* Add this line to include the toast container */}
       <Routes>
         <Route
           path="/"
@@ -51,7 +53,7 @@ function App() {
               addToTotal={addToTotal}
               clearCart={clearCart}
               loginState={loginState}
-              login = {login}
+              login={login}
             />
           }
         />
@@ -67,7 +69,7 @@ function App() {
               addToTotal={addToTotal}
               clearCart={clearCart}
               loginState={loginState}
-              login = {login}
+              login={login}
             />
           }
         />
@@ -83,7 +85,7 @@ function App() {
               addToTotal={addToTotal}
               clearCart={clearCart}
               loginState={loginState}
-              login = {login}
+              login={login}
             />
           }
         />
@@ -91,14 +93,14 @@ function App() {
           path="/cart"
           element={
             <Cart
-              cartItems={cartItems} // Pass the cartItems array
+              cartItems={cartItems}
               cartCount={cartCount}
               setCartCount={setCartCount}
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
               clearCart={clearCart}
               loginState={loginState}
-              login = {login}
+              login={login}
             />
           }
         />
@@ -106,14 +108,14 @@ function App() {
           path="/login"
           element={
             <LoginPage
-              cartItems={cartItems} // Pass the cartItems array
+              cartItems={cartItems}
               cartCount={cartCount}
               setCartCount={setCartCount}
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
               clearCart={clearCart}
               loginState={loginState}
-              login = {login}
+              login={login}
             />
           }
         />
@@ -121,14 +123,14 @@ function App() {
           path="/register"
           element={
             <RegisterPage
-              cartItems={cartItems} // Pass the cartItems array
+              cartItems={cartItems}
               cartCount={cartCount}
               setCartCount={setCartCount}
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
               clearCart={clearCart}
               loginState={loginState}
-              login = {login}
+              login={login}
             />
           }
         />
@@ -144,15 +146,13 @@ function App() {
               addToTotal={addToTotal}
               clearCart={clearCart}
               loginState={loginState}
-              login = {login}
+              login={login}
             />
           }
         />
-
       </Routes>
     </Router>
   );
 }
-
 
 export default App;
