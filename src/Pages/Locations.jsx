@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Import Axios for making API requests
+import axios from 'axios';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -55,16 +55,16 @@ function Locations(props) {
         <div className="row justify-content-center">
           {locations.map((location, index) => (
             <div className="col-md-4 mb-4 px-2" key={index}>
-              <a href={location.mapLink} target="_blank" rel="noopener noreferrer" style={anchorStyle}>
+              <a href={location.image} target="_blank" rel="noopener noreferrer" style={anchorStyle}>
                 <div className="card">
                   <img
-                    src={location.imageSrc}
+                    src={location.image}
                     className="card-img-top"
-                    alt={location.title}
+                    alt={location.name}
                     style={imageStyle}
                   />
                   <div className="card-body">
-                    <h5 className="card-title">{location.title}</h5>
+                    <h5 className="card-title">{location.name}</h5>
                     <p className="card-text">{location.description}</p>
                   </div>
                 </div>
