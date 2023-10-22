@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import symbieat from '../static/symbieat_images/symbieat_vertical.jpg';
+import axios from 'axios';
 
-// Import the Header component
 import Header from '../components/Header';
 
 function LoginPage(props) {
@@ -21,33 +21,28 @@ function LoginPage(props) {
 
   const [prnError, setPrnError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [loginError, setLoginError] = useState(null); // Added state for login errors
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
+    const prnValue = document.getElementById('form2Example17').value;
+    const passwordValue = document.getElementById('form2Example27').value;
 
-    // Get the values from the input fields
-    const prnValue = e.target.prn.value;
-    const passwordValue = e.target.password.value;
-
-    // Reset previous error messages
     setPrnError('');
     setPasswordError('');
+    setLoginError(null); // Clear any previous login errors
 
-    // Validate PRN
-    if (prnValue.length !== 11) {
-      setPrnError('PRN must be 11 digits long');
-      return;
+    try {
+      const response = await axios.post('/api/users', { username: prnValue, password: passwordValue });
+      if (response.status === 200) {
+        localStorage.setItem('authToken', response.data.token);
+        props.login(prnValue);
+      } else if (response.status === 401) {
+        // Authentication failed, display the error message
+        setPasswordError('Incorrect PRN or password.');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
     }
-
-    // Validate password
-    if (passwordValue.length < 3) {
-      setPasswordError('Password must be at least 3 characters long');
-      return;
-    }
-
-    // If both PRN and password are valid, change the login state
-    props.login(prnValue);
-
   };
 
   return (
@@ -60,7 +55,7 @@ function LoginPage(props) {
         setCartTotal={props.setCartTotal}
         clearCart={props.clearCart}
         loginState={props.loginState}
-        setLoginState={props.loginState}
+        setLoginState={props.setLoginState}
         login={props.login}
       />
       <section className="vh-100" style={containerStyle}>
@@ -79,60 +74,60 @@ function LoginPage(props) {
                   </div>
                   <div className="col-md-6 col-lg-7 d-flex align-items-center">
                     <div className="card-body p-4 p-lg-5 text-black">
-                      <form onSubmit={handleSubmit}>
-                        <div className="d-flex align-items-center mb-3 pb-1">
-                          <span className="h1 fw-bold mb-0">Login to Symbieat</span>
-                        </div>
+                      <div className="d-flex align-items-center mb-3 pb-1">
+                        <span className="h1 fw-bold mb-0">Login to Symbieat</span>
+                      </div>
 
-                        <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
-                          Sign into your account
-                        </h5>
+                      <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
+                        Sign into your account
+                      </h5>
 
-                        <div className="form-outline mb-4">
-                          <input
-                            type="number"
-                            id="form2Example17"
-                            className="form-control form-control-lg"
-                            name="prn"
-                          />
-                          <label className="form-label" htmlFor="form2Example17">
-                            PRN (11 digits)
-                          </label>
-                          {prnError && <div className="text-danger">{prnError}</div>}
-                        </div>
+                      <div className="form-outline mb-4">
+                        <input
+                          type="text"
+                          id="form2Example17"
+                          className="form-control form-control-lg"
+                          name="prn"
+                        />
+                        <label className="form-label" htmlFor="form2Example17">
+                          PRN (11 digits)
+                        </label>
+                        {prnError && <div className="text-danger">{prnError}</div>}
+                      </div>
 
-                        <div className="form-outline mb-4">
-                          <input
-                            type="password"
-                            id="form2Example27"
-                            className="form-control form-control-lg"
-                            name="password"
-                          />
-                          <label className="form-label" htmlFor="form2Example27">
-                            Password (min 3 characters)
-                          </label>
-                          {passwordError && <div className="text-danger">{passwordError}</div>}
-                        </div>
+                      <div className="form-outline mb-4">
+                        <input
+                          type="password"
+                          id="form2Example27"
+                          className="form-control form-control-lg"
+                          name="password"
+                        />
+                        <label className="form-label" htmlFor="form2Example27">
+                          Password (min 3 characters)
+                        </label>
+                        {passwordError && <div className="text-danger">{passwordError}</div>}
+                      </div>
 
-                        <div className="pt-1 mb-4">
-                          <button className="btn btn-dark btn-lg btn-block" type="submit">
-                            Login
-                          </button>
-                        </div>
+                      {loginError && <div className="text-danger">{loginError}</div>} {/* Display login error */}
+                      
+                      <div className="pt-1 mb-4">
+                        <button className="btn btn-dark btn-lg btn-block" type="button" onClick={handleLogin}>
+                          Login
+                        </button>
+                      </div>
 
-                        <a className="small text-muted" href="#!">
-                          Forgot password?
-                        </a>
-                        <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
-                          <Link to="/register">Register for a new account</Link>
-                        </p>
-                        <p>
-                          {props.loginState}
-                        </p>
-                        <NavLink to="/" className="btn btn-danger btn-lg btn-block">
-                          Back to Home
-                        </NavLink>
-                      </form>
+                      <a className="small text-muted" href="#!">
+                        Forgot password?
+                      </a>
+                      <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
+                        <Link to="/register">Register for a new account</Link>
+                      </p>
+                      <p>
+                        {props.loginState}
+                      </p>
+                      <NavLink to="/" className="btn btn-danger btn-lg btn-block">
+                        Back to Home
+                      </NavLink>
                     </div>
                   </div>
                 </div>
