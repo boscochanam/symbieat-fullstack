@@ -8,6 +8,7 @@ import Cart from './Pages/Cart'
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import Payment from './Pages/Payment';
+import axios from 'axios';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [loginState, setLoginState] = useState("");
   
+  axios.defaults.baseURL = 'http://localhost:8080';
 
   const login = (username) => { 
     setLoginState( c => username);
