@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import symbieat from '../static/symbieat_images/symbieat_vertical.jpg';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from '../AuthContext'; // Import the useAuth hook
 
 import Header from '../components/Header';
@@ -25,36 +27,45 @@ function LoginPage(props) {
 
   const [prnError, setPrnError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [loginError, setLoginError] = useState(null); // Added state for login errors
+  const [loginError, setLoginError] = useState(null);
+
+  const navigate = useNavigate(); // Add this line to get the navigate function
 
   const handleLogin = async () => {
-    const prnValue = document.getElementById('form2Example17').value;
-    const passwordValue = document.getElementById('form2Example27').value;
-  
-    setPrnError('');
-    setPasswordError('');
-    setLoginError(null); // Clear any previous login errors
-  
-    try {
-      const response = await axios.post('/api/users', { username: prnValue, password: passwordValue });
-      if (response.status === 200) {
-        // Set the user in the context using the `setUser` function from `useAuth`
-        login(prnValue);
-        localStorage.setItem('authToken', response.data.token);
-        console.log("Logged in successfully");
-      } else if (response.status === 401) {
-        // Authentication failed, display the error message
-        setPasswordError('Incorrect PRN or password.');
-      }
-    } catch (error) {
-      console.error('Error during login:', error);
+  const prnValue = document.getElementById('form2Example17').value;
+  const passwordValue = document.getElementById('form2Example27').value;
+
+  setPrnError('');
+  setPasswordError('');
+  setLoginError(null);
+
+  try {
+    const response = await axios.post('/api/users', { username: prnValue, password: passwordValue });
+    if (response.status === 200) {
+      localStorage.setItem('authToken', response.data.token);
+      props.login(prnValue);
+      login(prnValue);
+      console.log("Logged in successfully");
+      // Redirect to the home page on successful login
+      navigate('/');
+    } else if (response.status === 401) {
+      setPasswordError('Invalid PRN or Password.');
+      toast.error('Invalid PRN or Password', {
+        position: toast.POSITION.TOP_CENTER
+      });
     }
-  };
-  
+  } 
+  catch (error) {
+    console.error('Error during login:', error);
+    toast.error('An error occurred', {
+      position: toast.POSITION.TOP_CENTER
+    });
+  }
+};
+
 
   return (
     <div>
-      {/* Include the Header component */}
       <Header
         cartCount={props.cartCount}
         setCartCount={props.setCartCount}
@@ -115,8 +126,8 @@ function LoginPage(props) {
                         {passwordError && <div className="text-danger">{passwordError}</div>}
                       </div>
 
-                      {loginError && <div className="text-danger">{loginError}</div>} {/* Display login error */}
-                      
+                      {loginError && <div className="text-danger">{loginError}</div>}
+
                       <div className="pt-1 mb-4">
                         <button className="btn btn-dark btn-lg btn-block" type="button" onClick={handleLogin}>
                           Login
