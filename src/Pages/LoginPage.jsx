@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import symbieat from '../static/symbieat_images/symbieat_vertical.jpg';
 import axios from 'axios';
+import { useAuth } from '../AuthContext'; // Import the useAuth hook
 
 import Header from '../components/Header';
 
 function LoginPage(props) {
+
+  const { login } = useAuth();
+
   const containerStyle = {
     backgroundColor: '#FF4C4C',
     height: '30vh',

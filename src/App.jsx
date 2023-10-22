@@ -9,6 +9,7 @@ import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import Payment from './Pages/Payment';
 import axios from 'axios';
+import { AuthProvider } from './AuthContext'; // Import AuthProvider
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
   };
 
   return (
+    <AuthProvider>
     <Router>
       <Routes>
         <Route
@@ -151,6 +153,7 @@ function App() {
 
       </Routes>
     </Router>
+    </AuthProvider>
   );
 }
 
