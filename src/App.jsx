@@ -11,6 +11,7 @@ import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import Payment from './Pages/Payment';
 import axios from 'axios';
+import { AuthProvider } from './AuthContext'; // Import AuthProvider
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -38,6 +39,7 @@ function App() {
   };
 
   return (
+    <AuthProvider>
     <Router>
       <ToastContainer /> {/* Add this line to include the toast container */}
       <Routes>
@@ -152,6 +154,7 @@ function App() {
         />
       </Routes>
     </Router>
+    </AuthProvider>
   );
 }
 
