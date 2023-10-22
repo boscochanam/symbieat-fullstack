@@ -30,16 +30,18 @@ function LoginPage(props) {
   const handleLogin = async () => {
     const prnValue = document.getElementById('form2Example17').value;
     const passwordValue = document.getElementById('form2Example27').value;
-
+  
     setPrnError('');
     setPasswordError('');
     setLoginError(null); // Clear any previous login errors
-
+  
     try {
       const response = await axios.post('/api/users', { username: prnValue, password: passwordValue });
       if (response.status === 200) {
+        // Set the user in the context using the `setUser` function from `useAuth`
+        login(prnValue);
         localStorage.setItem('authToken', response.data.token);
-        props.login(prnValue);
+        console.log("Logged in successfully");
       } else if (response.status === 401) {
         // Authentication failed, display the error message
         setPasswordError('Incorrect PRN or password.');
@@ -48,6 +50,7 @@ function LoginPage(props) {
       console.error('Error during login:', error);
     }
   };
+  
 
   return (
     <div>

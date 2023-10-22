@@ -30,6 +30,7 @@ app.post('/login', (req, res) => {
   }
 });
 
+
 // Middleware to protect a route
 function requireAuthentication(req, res, next) {
   if (req.session.user) {

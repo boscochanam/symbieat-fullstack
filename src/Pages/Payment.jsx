@@ -20,17 +20,8 @@ function Payment(props) {
   const checkBalance = async () => {
     setError(null);
 
-    if (!user) {
-      setError('Please log in to check your balance.');
-      return;
-    }
-
     try {
-      const response = await axios.post('/api/users', {
-        username: user.username,
-        password,
-      });
-
+      const response = await axios.post('/api/users', { username: props.username, password });
       if (response.status === 200) {
         setBalance(response.data.balance);
       } else {
@@ -81,9 +72,11 @@ function Payment(props) {
               <div className="d-flex justify-content-between mb-4 small">
                 <span>TOTAL</span> <strong className="text-dark">&#8377;{props.cartTotal}</strong>
               </div>
-              <NavLink to="/" className="btn btn-primary w-100 mt-2" onClick={resetCart}>
-                Place order
-              </NavLink>
+              {user ? ( // Only show the "Place order" button if the user is authenticated
+                <NavLink to="/" className="btn btn-primary w-100 mt-2" onClick={resetCart}>
+                  Place order
+                </NavLink>
+              ) : null}
             </div>
           </div>
         </div>
