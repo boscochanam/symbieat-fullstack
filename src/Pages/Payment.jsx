@@ -1,31 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Payment.css';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from '../AuthContext'; // Import the useAuth hook
+import { useAuth } from '../AuthContext';
 import axios from 'axios'; // Import Axios for making API requests
 
 function Payment(props) {
+  const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [orderError, setOrderError] = useState(null);
+
   const resetCart = () => {
     props.setCartCount(0);
     props.setCartTotal(0);
     props.clearCart();
   };
 
-  const { user } = useAuth(); // Get user data from the context
-  const [balance, setBalance] = useState(null);
+  const { user } = useAuth();
 
-  useEffect(() => {
-    // Fetch the user's balance from the server when the component mounts
-    if (user) {
-      axios.get('/api/users/get-balance') // Use the correct API endpoint
+  const placeOrder = () => {
+    if (props.balance >= props.cartTotal) {
+      const newBalance = props.balance - props.cartTotal;
+      
+      // Use props.loginState for the username
+      const requestData = {
+        username: props.loginState,
+        newBalance: newBalance,
+      };
+  
+      // Update the balance on the server
+      axios.post('/update-balance', requestData)
         .then((response) => {
-          setBalance(response.data.balance);
+          // Handle the server response if needed
+          setOrderPlaced(true);
+          props.setBalance(newBalance);
+          resetCart();
         })
         .catch((error) => {
-          console.error('Error fetching balance:', error);
+          setOrderError('Error placing order. Please try again.');
+          console.error('Error placing order:', error);
         });
+    } else {
+      setOrderError('Insufficient balance. Please top up your account.');
     }
-  }, [user]);
+  };
+  
 
   return (
     <div className="container mt-5">
@@ -35,13 +53,19 @@ function Payment(props) {
           {user ? (
             <>
               <div className="mb-3">
-                <p>Your balance is: {balance !== null ? balance : 'Loading...'} </p>
+                <p>Your balance is: {props.balance !== null ? props.balance : 'Loading...'} </p>
               </div>
-              <div className="mb-3">
-                <button className="btn btn-primary" onClick={resetCart}>
-                  Check Balance
-                </button>
-              </div>
+              {isPlacingOrder ? (
+                <p>Placing order...</p>
+              ) : (
+                <div className="mb-3">
+                  <button className="btn btn-primary" onClick={placeOrder}>
+                    Place Order
+                  </button>
+                </div>
+              )}
+              {orderError && <p className="text-danger">{orderError}</p>}
+              {orderPlaced && <p>Order placed successfully!</p>}
             </>
           ) : (
             <p>Please log in to access the payment page.</p>
@@ -56,7 +80,7 @@ function Payment(props) {
               </div>
               {user ? (
                 <NavLink to="/" className="btn btn-primary w-100 mt-2" onClick={resetCart}>
-                  Place order
+                  Cancel
                 </NavLink>
               ) : null}
             </div>
