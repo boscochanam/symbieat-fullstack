@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import facebookIcon from '../static/social_media_icons/facebook.png';
-import instagramIcon from '../static/social_media_icons/instagram.png';
 import twitterIcon from '../static/social_media_icons/twitter.png';
+import instagramIcon from '../static/social_media_icons/instagram.png';
 import ReviewPopup from './ReviewPopup';
 
 function Footer() {
@@ -20,23 +21,6 @@ function Footer() {
   const textStyle = {
     fontSize: '18px',
     marginBottom: '5px',
-  };
-
-  const linkStyle = {
-    color: '#fff',
-    textDecoration: 'none',
-    fontSize: '18px',
-  };
-
-  const listStyle = {
-    listStyle: 'none',
-    padding: '0',
-    textAlign: 'right', // Align the list to the right
-  };
-
-  const listItemStyle = {
-    display: 'inline',
-    marginLeft: '10px', // Add some space between icons
   };
 
   const reviewStyle = {
@@ -74,11 +58,19 @@ function Footer() {
   const [reviewText, setReviewText] = useState('');
   const [showPopup, setShowPopup] = useState(false);
 
-  const handlePostReview = () => {
-    setShowPopup(true);
-    setReviewText('');
-    setTimeout(() => setShowPopup(false), 3000);
-  };
+  const handlePostReview = async () => {
+    if (reviewText.trim() !== '') {
+      try {
+        await axios.post('/api/reviews', { text: reviewText });
+        setShowPopup(true);
+        setReviewText('');
+        setTimeout(() => setShowPopup(false), 3000);
+      } catch (error) {
+        console.error('Error posting review:', error);
+      }
+    }
+  }
+
 
   return (
     <footer style={footerStyle}>
@@ -91,19 +83,19 @@ function Footer() {
           </div>
           <div className="col-md-6">
             <h3 style={{ ...headingStyle, textAlign: 'right' }}>Follow Us</h3>
-            <ul style={listStyle}>
-              <li style={listItemStyle}>
-                <a href="https://www.facebook.com" style={linkStyle}>
+            <ul style={{ padding: 0, listStyle: 'none', textAlign: 'right' }}>
+              <li style={{ display: 'inline', marginLeft: '10px' }}>
+                <a href="https://www.facebook.com" style={{ color: '#fff', textDecoration: 'none', fontSize: '18px' }}>
                   <img src={facebookIcon} alt="Facebook" width="24" height="24" />
                 </a>
               </li>
-              <li style={listItemStyle}>
-                <a href="https://www.twitter.com" style={linkStyle}>
+              <li style={{ display: 'inline', marginLeft: '10px' }}>
+                <a href="https://www.twitter.com" style={{ color: '#fff', textDecoration: 'none', fontSize: '18px' }}>
                   <img src={twitterIcon} alt="Twitter" width="24" height="24" />
                 </a>
               </li>
-              <li style={listItemStyle}>
-                <a href="https://www.instagram.com" style={linkStyle}>
+              <li style={{ display: 'inline', marginLeft: '10px' }}>
+                <a href="https://www.instagram.com" style={{ color: '#fff', textDecoration: 'none', fontSize: '18px' }}>
                   <img src={instagramIcon} alt="Instagram" width="24" height="24" />
                 </a>
               </li>
@@ -131,7 +123,6 @@ function Footer() {
         </div>
       </div>
 
-      {/* Add the Popup component */}
       <ReviewPopup show={showPopup} message="Review submitted!" />
     </footer>
   );
