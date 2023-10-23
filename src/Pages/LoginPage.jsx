@@ -154,12 +154,12 @@ const handleLogin = async () => {
                       </div>
 
                       
-                      <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
+                      {/* <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
                         <Link to="/register">Register for a new account</Link>
                       </p>
                       <p>
                         {props.loginState}
-                      </p>
+                      </p> */}
                       <NavLink to="/" className="btn btn-danger btn-lg btn-block">
                         Back to Home
                       </NavLink>
