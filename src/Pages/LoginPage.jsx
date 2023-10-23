@@ -31,42 +31,51 @@ function LoginPage(props) {
 
   const navigate = useNavigate(); // Add this line to get the navigate function
 
-  const handleLogin = async () => {
-    const prnValue = document.getElementById('form2Example17').value;
-    const passwordValue = document.getElementById('form2Example27').value;
-    setPrnError('');
-    setPasswordError('');
-    setLoginError(null);
-  
-    try {
-      const response = await axios.post('/login', { username: prnValue, password: passwordValue }); // Updated route
-      if (response.status === 200) {
-        localStorage.setItem('authToken', response.data.token);
-        
-        // Retrieve balance from response.data
-        const { username, balance } = response.data;
-        console.log("Balance:", balance); // Log the balance to check if it's correctly retrieved
-  
-        props.login(prnValue);
-        login(prnValue);
-        console.log("Logged in successfully");
-        
-        // Redirect to the home page on successful login
-        navigate('/');
-      } else if (response.status === 401) {
-        setPasswordError('Invalid PRN or Password');
-        toast.error('Invalid PRN or Password', {
-          position: toast.POSITION.TOP_CENTER
-        });
-      }
-    } 
-    catch (error) {
-      console.error('Error during login:', error);
-      toast.error('An error occurred', {
+  // frontend.js (or any appropriate file)
+let globalUsername = null;
+let globalBalance = null;
+
+// Modify your login function to set the global username and balance
+const handleLogin = async () => {
+  const prnValue = document.getElementById('form2Example17').value;
+  const passwordValue = document.getElementById('form2Example27').value;
+  setPrnError('');
+  setPasswordError('');
+  setLoginError(null);
+
+  try {
+    const response = await axios.post('/login', { username: prnValue, password: passwordValue });
+    if (response.status === 200) {
+      localStorage.setItem('authToken', response.data.token);
+
+      // Retrieve username and balance from response.data and set them in the global variables
+      const { username, balance } = response.data;
+      globalUsername = username; // Set the global username
+      globalBalance = balance; // Set the global balance
+
+      // Set the balance in state using props
+      props.setBalance(balance);
+
+      props.login(prnValue);
+      login(prnValue);
+
+      // Redirect to the home page on successful login
+      navigate('/');
+    } else if (response.status === 401) {
+      setPasswordError('Invalid PRN or Password');
+      toast.error('Invalid PRN or Password', {
         position: toast.POSITION.TOP_CENTER
       });
     }
-  };
+  } catch (error) {
+    console.error('Error during login:', error);
+    toast.error('An error occurred', {
+      position: toast.POSITION.TOP_CENTER
+    });
+  }
+};
+
+  
   
   
   
@@ -83,6 +92,8 @@ function LoginPage(props) {
         loginState={props.loginState}
         setLoginState={props.setLoginState}
         login={props.login}
+        balance = {props.balance}
+          setBalance = {props.setBalance}
       />
       <section className="vh-100" style={containerStyle}>
         <div className="container py-5 h-100">

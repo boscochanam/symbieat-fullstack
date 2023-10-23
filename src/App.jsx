@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css'; // Import the styles
 import Home from './Pages/Home';
 import Menu from './Pages/Menu';
 import Locations from './Pages/Locations';
-import Cart from './Pages/Cart'
+import Cart from './Pages/Cart';
 import LoginPage from './Pages/LoginPage';
 import RegisterPage from './Pages/RegisterPage';
 import Payment from './Pages/Payment';
@@ -18,6 +18,7 @@ function App() {
   const [cartTotal, setCartTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [loginState, setLoginState] = useState("");
+  const [balance, setBalance] = useState(0); // Initialize balance to 0
   
   axios.defaults.baseURL = 'http://localhost:8080';
 
@@ -56,6 +57,8 @@ function App() {
               clearCart={clearCart}
               loginState={loginState}
               login={login}
+              balance = {balance}
+              setBalance = {setBalance}
             />
           }
         />
@@ -72,6 +75,8 @@ function App() {
               clearCart={clearCart}
               loginState={loginState}
               login={login}
+              balance = {balance}
+              setBalance = {setBalance}
             />
           }
         />
@@ -88,6 +93,8 @@ function App() {
               clearCart={clearCart}
               loginState={loginState}
               login={login}
+              balance = {balance}
+              setBalance = {setBalance}
             />
           }
         />
@@ -103,6 +110,8 @@ function App() {
               clearCart={clearCart}
               loginState={loginState}
               login={login}
+              balance = {balance}
+              setBalance = {setBalance}
             />
           }
         />
@@ -118,6 +127,8 @@ function App() {
               clearCart={clearCart}
               loginState={loginState}
               login={login}
+              balance = {balance}
+              setBalance = {setBalance}
             />
           }
         />
@@ -133,6 +144,8 @@ function App() {
               clearCart={clearCart}
               loginState={loginState}
               login={login}
+              balance = {balance}
+              setBalance = {setBalance}
             />
           }
         />
@@ -149,6 +162,8 @@ function App() {
               clearCart={clearCart}
               loginState={loginState}
               login={login}
+              balance = {balance}
+              setBalance = {setBalance}
             />
           }
         />

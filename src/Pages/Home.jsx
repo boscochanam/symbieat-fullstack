@@ -23,6 +23,8 @@ function Home(props) {
           loginState={props.loginState}
           setLoginState={props.loginState}
           login={props.login}
+          balance = {props.balance}
+          setBalance = {props.setBalance}
         />
       </div>
       <LocationSection />

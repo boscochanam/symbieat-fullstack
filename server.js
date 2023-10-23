@@ -7,17 +7,6 @@ const app = express();
 const api = require('./api/api.js');
 const userModel = require('./api/models/users.model'); // Import your user model
 
-app.use(
-  session({
-    secret: 'secret-key',
-    resave: false,
-    saveUninitialized: true,
-  })
-);
-
-app.use(bodyParser.json());
-app.use(cors());
-
 // Middleware to protect a route
 function requireAuthentication(req, res, next) {
   if (req.session.user) {
@@ -29,27 +18,33 @@ function requireAuthentication(req, res, next) {
   }
 }
 
+app.use(
+  session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(bodyParser.json());
+app.use(cors());
+
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
-
   try {
-    // Query your user model to find the user by username and password
     const user = await userModel.findOne({ username, password });
 
     if (user) {
-      // If the user is found, store user data in the session
-      req.session.user = user;
+      req.session.user = user; // Store the user in the session
       res.status(200).json({ success: true, username: user.username, balance: user.balance });
     } else {
-      // If the user is not found, return a 401 Unauthorized response
-      res.status(401).json({ message: 'Invalid credentials' });
+      res.status(401).json({ success: false, message: 'Invalid PRN or password.' });
     }
   } catch (error) {
-    // Handle other errors, such as database errors
+    console.error('Error during login:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 
 app.get('/get-balance', requireAuthentication, (req, res) => {
   const user = req.session.user;
@@ -59,6 +54,39 @@ app.get('/get-balance', requireAuthentication, (req, res) => {
     res.status(401).json({ message: 'Unauthorized' });
   }
 });
+
+app.post('/update-balance', (req, res) => {
+  const { newBalance } = req.body;
+  const username = req.session.user.username; // Get the username from the session
+
+  if (!username || newBalance === null) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  // Update the user's balance using the updateOne method
+  User.updateOne({ username: username }, { $set: { balance: newBalance } }, (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    if (result.nModified === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update the user's balance in the session
+    req.session.user.balance = newBalance;
+
+    // Respond with a success message
+    res.status(200).json({ message: 'Balance updated successfully' });
+  });
+});
+
+
+
+
+
+
+
 
 
 app.use('/api', api);

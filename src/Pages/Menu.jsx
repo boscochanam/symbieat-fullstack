@@ -50,6 +50,8 @@ function Menu(props) {
           loginState={props.loginState}
           setLoginState={props.setLoginState}
           login={props.login}
+          balance = {props.balance}
+          setBalance = {props.setBalance}
         />
       </div>
       <div className="menu-section" style={menuStyle}>

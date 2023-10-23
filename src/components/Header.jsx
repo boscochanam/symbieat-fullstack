@@ -6,7 +6,7 @@ function Header(props) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const cartCountStyle = {
-    fontWeight: 'bold', // Correct the CSS property name to 'fontWeight'
+    fontWeight: 'bold',
     padding: '5px',
     color: 'white',
     margin: '10px',
@@ -20,7 +20,9 @@ function Header(props) {
 
   const resetLogin = () => {
     props.login("");
+    // props.setBalance(0); // Reset the balance when logging out
   }
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -33,7 +35,6 @@ function Header(props) {
     <nav className="navbar bg-dark navbar-expand-lg" style={{ backgroundColor: '#EAEAEA' }} data-bs-theme="dark">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/"><img src="../favicon.ico" alt="Symbieat Logo" height="30" /></NavLink>
-
 
         <button
           className={`navbar-toggler ${menuOpen ? '' : 'collapsed'}`}
@@ -69,7 +70,10 @@ function Header(props) {
         </div>
         <div>
           {props.loginState ? (
-            <NavLink className="nav-link" to="/" >{props.loginState}</NavLink>
+            <div>
+              <NavLink className="nav-link" to="/" >{props.loginState}</NavLink>
+              <p style={{ color: 'white' }}>Balance: &#8377; {props.balance} &nbsp; &nbsp;</p> {/* Display the balance */}
+            </div>
           ) : (
             <NavLink className="nav-link" to="/login">Not Logged In</NavLink>
           )}
