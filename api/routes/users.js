@@ -23,24 +23,5 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.get('/get-balance', async (req, res) => {
-  // Ensure the user is authenticated or implement authentication as needed
-
-  try {
-    // Retrieve the user's balance based on their session or authentication
-    if (req.session.user) {
-      const user = await userModel.findById(req.session.user._id);
-      if (user) {
-        res.status(200).json({ balance: user.balance });
-      } else {
-        res.status(404).json({ message: 'User not found' });
-      }
-    } else {
-      res.status(401).json({ message: 'Unauthorized' });
-    }
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
 
 module.exports = router;

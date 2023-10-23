@@ -37,16 +37,16 @@ function LoginPage(props) {
     setPrnError('');
     setPasswordError('');
     setLoginError(null);
-
+  
     try {
-      const response = await axios.post('/api/users', { username: prnValue, password: passwordValue });
+      const response = await axios.post('/login', { username: prnValue, password: passwordValue }); // Updated route
       if (response.status === 200) {
         localStorage.setItem('authToken', response.data.token);
         
         // Retrieve balance from response.data
         const { username, balance } = response.data;
         console.log("Balance:", balance); // Log the balance to check if it's correctly retrieved
-
+  
         props.login(prnValue);
         login(prnValue);
         console.log("Logged in successfully");
@@ -59,7 +59,6 @@ function LoginPage(props) {
           position: toast.POSITION.TOP_CENTER
         });
       }
-
     } 
     catch (error) {
       console.error('Error during login:', error);
@@ -68,6 +67,7 @@ function LoginPage(props) {
       });
     }
   };
+  
   
   
 
