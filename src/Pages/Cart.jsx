@@ -54,7 +54,7 @@ function Cart({ cartItems, cartTotal, setCartTotal, ...props }) {
                       src={cartItem.imageSrc}
                       className="card-img-top"
                       alt={cartItem.title}
-                      style={{ height: '50px', objectFit: 'cover' }}
+                      style={{ height: '200px', objectFit: 'cover' }}
                     />
                     <div className="card-body text-center">
                       <h5 className="card-title">

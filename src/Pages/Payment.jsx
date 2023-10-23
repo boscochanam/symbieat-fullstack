@@ -20,25 +20,25 @@ function Payment(props) {
   const placeOrder = () => {
     if (props.balance >= props.cartTotal) {
       const newBalance = props.balance - props.cartTotal;
+      props.setBalance(newBalance);
       
       // Use props.loginState for the username
-      const requestData = {
-        username: props.loginState,
-        newBalance: newBalance,
-      };
+      // const requestData = {
+      //   username: props.loginState,
+      //   newBalance: newBalance,
+      // };
   
       // Update the balance on the server
-      axios.post('/update-balance', requestData)
-        .then((response) => {
-          // Handle the server response if needed
-          setOrderPlaced(true);
-          props.setBalance(newBalance);
-          resetCart();
-        })
-        .catch((error) => {
-          setOrderError('Error placing order. Please try again.');
-          console.error('Error placing order:', error);
-        });
+      // axios.post('/update-balance', requestData)
+      //   .then((response) => {
+      //     // Handle the server response if needed
+      //     setOrderPlaced(true);
+      //     resetCart();
+      //   })
+      //   .catch((error) => {
+      //     setOrderError('Error placing order. Please try again.');
+      //     console.error('Error placing order:', error);
+        // });
     } else {
       setOrderError('Insufficient balance. Please top up your account.');
     }
@@ -80,7 +80,7 @@ function Payment(props) {
               </div>
               {user ? (
                 <NavLink to="/" className="btn btn-primary w-100 mt-2" onClick={resetCart}>
-                  Cancel
+                  Return
                 </NavLink>
               ) : null}
             </div>
