@@ -32,36 +32,44 @@ function LoginPage(props) {
   const navigate = useNavigate(); // Add this line to get the navigate function
 
   const handleLogin = async () => {
-  const prnValue = document.getElementById('form2Example17').value;
-  const passwordValue = document.getElementById('form2Example27').value;
+    const prnValue = document.getElementById('form2Example17').value;
+    const passwordValue = document.getElementById('form2Example27').value;
+    setPrnError('');
+    setPasswordError('');
+    setLoginError(null);
 
-  setPrnError('');
-  setPasswordError('');
-  setLoginError(null);
+    try {
+      const response = await axios.post('/api/users', { username: prnValue, password: passwordValue });
+      if (response.status === 200) {
+        localStorage.setItem('authToken', response.data.token);
+        
+        // Retrieve balance from response.data
+        const { username, balance } = response.data;
+        console.log("Balance:", balance); // Log the balance to check if it's correctly retrieved
 
-  try {
-    const response = await axios.post('/api/users', { username: prnValue, password: passwordValue });
-    if (response.status === 200) {
-      localStorage.setItem('authToken', response.data.token);
-      props.login(prnValue);
-      login(prnValue);
-      console.log("Logged in successfully");
-      // Redirect to the home page on successful login
-      navigate('/');
-    } else if (response.status === 401) {
-      setPasswordError('Invalid PRN or Password.');
-      toast.error('Invalid PRN or Password', {
+        props.login(prnValue);
+        login(prnValue);
+        console.log("Logged in successfully");
+        
+        // Redirect to the home page on successful login
+        navigate('/');
+      } else if (response.status === 401) {
+        setPasswordError('Invalid PRN or Password');
+        toast.error('Invalid PRN or Password', {
+          position: toast.POSITION.TOP_CENTER
+        });
+      }
+
+    } 
+    catch (error) {
+      console.error('Error during login:', error);
+      toast.error('An error occurred', {
         position: toast.POSITION.TOP_CENTER
       });
     }
-  } 
-  catch (error) {
-    console.error('Error during login:', error);
-    toast.error('An error occurred', {
-      position: toast.POSITION.TOP_CENTER
-    });
-  }
-};
+  };
+  
+  
 
 // hi
   return (
@@ -134,9 +142,7 @@ function LoginPage(props) {
                         </button>
                       </div>
 
-                      <a className="small text-muted" href="#!">
-                        Forgot password?
-                      </a>
+                      
                       <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
                         <Link to="/register">Register for a new account</Link>
                       </p>

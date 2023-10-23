@@ -1,5 +1,5 @@
-const { ViewModuleSharp } = require('@material-ui/icons');
 const mongoose = require('mongoose');
+
 const userSchema = new mongoose.Schema({
     username: String,
     password: String,
@@ -7,12 +7,13 @@ const userSchema = new mongoose.Schema({
     cart: [{
         item: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Item',
+            ref: 'Item', // Reference to the 'Item' model
         },
         quantity: Number,
     }],
     balance: Number,
 });
 
-const userModel = mongoose.model('Users', userSchema);
-module.exports = userModel;
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

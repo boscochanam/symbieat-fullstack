@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Payment.css';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 import { useAuth } from '../AuthContext'; // Import the useAuth hook
+import axios from 'axios'; // Import Axios for making API requests
 
 function Payment(props) {
   const resetCart = () => {
@@ -11,55 +11,37 @@ function Payment(props) {
     props.clearCart();
   };
 
-  const [password, setPassword] = useState('');
-  const [balance, setBalance] = useState(null);
-  const [error, setError] = useState(null);
-
   const { user } = useAuth(); // Get user data from the context
+  const [balance, setBalance] = useState(null);
 
-  const checkBalance = async () => {
-    setError(null);
-
-    try {
-      const response = await axios.post('/api/users', { username: props.username, password });
-      if (response.status === 200) {
-        setBalance(response.data.balance);
-      } else {
-        setError('Incorrect password. Please try again.');
-      }
-    } catch (error) {
-      setError('Error checking balance. Please try again.');
+  useEffect(() => {
+    // Fetch the user's balance from the server when the component mounts
+    if (user) {
+      axios.get('/api/users/get-balance') // Use the correct API endpoint
+        .then((response) => {
+          setBalance(response.data.balance);
+        })
+        .catch((error) => {
+          console.error('Error fetching balance:', error);
+        });
     }
-  };
+  }, [user]);
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <h1 className="h3 mb-5">Payment</h1>
       <div className="row">
         <div className="col-lg-9">
-          {user ? ( // Only show the input fields if the user is authenticated
+          {user ? (
             <>
               <div className="mb-3">
-                <label className="form-label">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <p>Your balance is: {balance !== null ? balance : 'Loading...'} </p>
               </div>
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={checkBalance}>
+                <button className="btn btn-primary" onClick={resetCart}>
                   Check Balance
                 </button>
               </div>
-              {error && <div className="text-danger">{error}</div>}
-              {balance !== null && (
-                <div className="mb-3">
-                  <p>Your balance is: {balance}</p>
-                </div>
-              )}
             </>
           ) : (
             <p>Please log in to access the payment page.</p>
@@ -72,7 +54,7 @@ function Payment(props) {
               <div className="d-flex justify-content-between mb-4 small">
                 <span>TOTAL</span> <strong className="text-dark">&#8377;{props.cartTotal}</strong>
               </div>
-              {user ? ( // Only show the "Place order" button if the user is authenticated
+              {user ? (
                 <NavLink to="/" className="btn btn-primary w-100 mt-2" onClick={resetCart}>
                   Place order
                 </NavLink>
